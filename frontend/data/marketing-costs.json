@@ -1,0 +1,2818 @@
+[
+  {
+    "cost_id": 1,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-03-01T00:00:00",
+    "ad_spend": 100197.09
+  },
+  {
+    "cost_id": 5,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-04-01T00:00:00",
+    "ad_spend": 87098.06
+  },
+  {
+    "cost_id": 9,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-05-01T00:00:00",
+    "ad_spend": 106019.05
+  },
+  {
+    "cost_id": 13,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-06-01T00:00:00",
+    "ad_spend": 98484.12
+  },
+  {
+    "cost_id": 17,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-07-01T00:00:00",
+    "ad_spend": 83088.33
+  },
+  {
+    "cost_id": 21,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-08-01T00:00:00",
+    "ad_spend": 108030.62
+  },
+  {
+    "cost_id": 25,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-09-01T00:00:00",
+    "ad_spend": 82819.52
+  },
+  {
+    "cost_id": 29,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-10-01T00:00:00",
+    "ad_spend": 92973.63
+  },
+  {
+    "cost_id": 33,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-11-01T00:00:00",
+    "ad_spend": 112968.75
+  },
+  {
+    "cost_id": 37,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2019-12-01T00:00:00",
+    "ad_spend": 119720.32
+  },
+  {
+    "cost_id": 41,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-01-01T00:00:00",
+    "ad_spend": 108271.31
+  },
+  {
+    "cost_id": 45,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-02-01T00:00:00",
+    "ad_spend": 143135.5
+  },
+  {
+    "cost_id": 49,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-03-01T00:00:00",
+    "ad_spend": 136424.71
+  },
+  {
+    "cost_id": 53,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-04-01T00:00:00",
+    "ad_spend": 168231.78
+  },
+  {
+    "cost_id": 57,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-05-01T00:00:00",
+    "ad_spend": 125461.24
+  },
+  {
+    "cost_id": 61,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-06-01T00:00:00",
+    "ad_spend": 158135.36
+  },
+  {
+    "cost_id": 65,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-07-01T00:00:00",
+    "ad_spend": 128522.31
+  },
+  {
+    "cost_id": 69,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-08-01T00:00:00",
+    "ad_spend": 138861.86
+  },
+  {
+    "cost_id": 73,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-09-01T00:00:00",
+    "ad_spend": 153667.21
+  },
+  {
+    "cost_id": 77,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-10-01T00:00:00",
+    "ad_spend": 140457.48
+  },
+  {
+    "cost_id": 81,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-11-01T00:00:00",
+    "ad_spend": 173458.99
+  },
+  {
+    "cost_id": 85,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2020-12-01T00:00:00",
+    "ad_spend": 220328.24
+  },
+  {
+    "cost_id": 89,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-01-01T00:00:00",
+    "ad_spend": 119970.24
+  },
+  {
+    "cost_id": 93,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-02-01T00:00:00",
+    "ad_spend": 115466.86
+  },
+  {
+    "cost_id": 97,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-03-01T00:00:00",
+    "ad_spend": 141729.1
+  },
+  {
+    "cost_id": 101,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-04-01T00:00:00",
+    "ad_spend": 134356.78
+  },
+  {
+    "cost_id": 105,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-05-01T00:00:00",
+    "ad_spend": 119718.46
+  },
+  {
+    "cost_id": 109,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-06-01T00:00:00",
+    "ad_spend": 133389.83
+  },
+  {
+    "cost_id": 113,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-07-01T00:00:00",
+    "ad_spend": 108269.73
+  },
+  {
+    "cost_id": 117,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-08-01T00:00:00",
+    "ad_spend": 123273.56
+  },
+  {
+    "cost_id": 121,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-09-01T00:00:00",
+    "ad_spend": 143367.37
+  },
+  {
+    "cost_id": 125,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-10-01T00:00:00",
+    "ad_spend": 143857.84
+  },
+  {
+    "cost_id": 129,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-11-01T00:00:00",
+    "ad_spend": 158371.03
+  },
+  {
+    "cost_id": 133,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2021-12-01T00:00:00",
+    "ad_spend": 155832.5
+  },
+  {
+    "cost_id": 137,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-01-01T00:00:00",
+    "ad_spend": 79423.96
+  },
+  {
+    "cost_id": 141,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-02-01T00:00:00",
+    "ad_spend": 80951.1
+  },
+  {
+    "cost_id": 145,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-03-01T00:00:00",
+    "ad_spend": 116596.34
+  },
+  {
+    "cost_id": 149,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-04-01T00:00:00",
+    "ad_spend": 104212.57
+  },
+  {
+    "cost_id": 153,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-05-01T00:00:00",
+    "ad_spend": 111066.5
+  },
+  {
+    "cost_id": 157,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-06-01T00:00:00",
+    "ad_spend": 105227.38
+  },
+  {
+    "cost_id": 161,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-07-01T00:00:00",
+    "ad_spend": 91838.84
+  },
+  {
+    "cost_id": 165,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-08-01T00:00:00",
+    "ad_spend": 93817.05
+  },
+  {
+    "cost_id": 169,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-09-01T00:00:00",
+    "ad_spend": 102640.49
+  },
+  {
+    "cost_id": 173,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-10-01T00:00:00",
+    "ad_spend": 102989.16
+  },
+  {
+    "cost_id": 177,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-11-01T00:00:00",
+    "ad_spend": 146991.46
+  },
+  {
+    "cost_id": 181,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2022-12-01T00:00:00",
+    "ad_spend": 136018.7
+  },
+  {
+    "cost_id": 185,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-01-01T00:00:00",
+    "ad_spend": 88657.52
+  },
+  {
+    "cost_id": 189,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-02-01T00:00:00",
+    "ad_spend": 85758.11
+  },
+  {
+    "cost_id": 193,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-03-01T00:00:00",
+    "ad_spend": 104951.91
+  },
+  {
+    "cost_id": 197,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-04-01T00:00:00",
+    "ad_spend": 98873.45
+  },
+  {
+    "cost_id": 201,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-05-01T00:00:00",
+    "ad_spend": 104563.03
+  },
+  {
+    "cost_id": 205,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-06-01T00:00:00",
+    "ad_spend": 107460.52
+  },
+  {
+    "cost_id": 209,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-07-01T00:00:00",
+    "ad_spend": 89257.43
+  },
+  {
+    "cost_id": 213,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-08-01T00:00:00",
+    "ad_spend": 101729.15
+  },
+  {
+    "cost_id": 217,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-09-01T00:00:00",
+    "ad_spend": 97503.75
+  },
+  {
+    "cost_id": 221,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-10-01T00:00:00",
+    "ad_spend": 100423.4
+  },
+  {
+    "cost_id": 225,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-11-01T00:00:00",
+    "ad_spend": 144987.79
+  },
+  {
+    "cost_id": 229,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2023-12-01T00:00:00",
+    "ad_spend": 136116.39
+  },
+  {
+    "cost_id": 233,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-01-01T00:00:00",
+    "ad_spend": 103139.12
+  },
+  {
+    "cost_id": 237,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-02-01T00:00:00",
+    "ad_spend": 99764.61
+  },
+  {
+    "cost_id": 241,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-03-01T00:00:00",
+    "ad_spend": 117760.57
+  },
+  {
+    "cost_id": 245,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-04-01T00:00:00",
+    "ad_spend": 113388.29
+  },
+  {
+    "cost_id": 249,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-05-01T00:00:00",
+    "ad_spend": 93256.61
+  },
+  {
+    "cost_id": 253,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-06-01T00:00:00",
+    "ad_spend": 118152.03
+  },
+  {
+    "cost_id": 257,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-07-01T00:00:00",
+    "ad_spend": 82596.85
+  },
+  {
+    "cost_id": 261,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-08-01T00:00:00",
+    "ad_spend": 109833.62
+  },
+  {
+    "cost_id": 265,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-09-01T00:00:00",
+    "ad_spend": 105188.59
+  },
+  {
+    "cost_id": 269,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-10-01T00:00:00",
+    "ad_spend": 114238.08
+  },
+  {
+    "cost_id": 273,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-11-01T00:00:00",
+    "ad_spend": 167449.96
+  },
+  {
+    "cost_id": 277,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2024-12-01T00:00:00",
+    "ad_spend": 132088.15
+  },
+  {
+    "cost_id": 281,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-01-01T00:00:00",
+    "ad_spend": 101430.98
+  },
+  {
+    "cost_id": 285,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-02-01T00:00:00",
+    "ad_spend": 100475.52
+  },
+  {
+    "cost_id": 289,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-03-01T00:00:00",
+    "ad_spend": 127663.38
+  },
+  {
+    "cost_id": 293,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-04-01T00:00:00",
+    "ad_spend": 113772.98
+  },
+  {
+    "cost_id": 297,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-05-01T00:00:00",
+    "ad_spend": 115727.85
+  },
+  {
+    "cost_id": 301,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-06-01T00:00:00",
+    "ad_spend": 114593.25
+  },
+  {
+    "cost_id": 305,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-07-01T00:00:00",
+    "ad_spend": 102364.24
+  },
+  {
+    "cost_id": 309,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-08-01T00:00:00",
+    "ad_spend": 100997.04
+  },
+  {
+    "cost_id": 313,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-09-01T00:00:00",
+    "ad_spend": 128133.84
+  },
+  {
+    "cost_id": 317,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-10-01T00:00:00",
+    "ad_spend": 104206.53
+  },
+  {
+    "cost_id": 321,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-11-01T00:00:00",
+    "ad_spend": 172073.93
+  },
+  {
+    "cost_id": 325,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2025-12-01T00:00:00",
+    "ad_spend": 148023.91
+  },
+  {
+    "cost_id": 329,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2026-01-01T00:00:00",
+    "ad_spend": 95901.55
+  },
+  {
+    "cost_id": 333,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2026-02-01T00:00:00",
+    "ad_spend": 109109.59
+  },
+  {
+    "cost_id": 337,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2026-03-01T00:00:00",
+    "ad_spend": 104960.61
+  },
+  {
+    "cost_id": 341,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2026-04-01T00:00:00",
+    "ad_spend": 126261.22
+  },
+  {
+    "cost_id": 345,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2026-05-01T00:00:00",
+    "ad_spend": 120854.32
+  },
+  {
+    "cost_id": 349,
+    "channel_id": 2,
+    "channel_name": "Instagram",
+    "channel_type": "Virtual",
+    "cost_date": "2026-06-01T00:00:00",
+    "ad_spend": 121861.48
+  },
+  {
+    "cost_id": 3,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-03-01T00:00:00",
+    "ad_spend": 49326.31
+  },
+  {
+    "cost_id": 7,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-04-01T00:00:00",
+    "ad_spend": 46629.14
+  },
+  {
+    "cost_id": 11,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-05-01T00:00:00",
+    "ad_spend": 55171.84
+  },
+  {
+    "cost_id": 15,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-06-01T00:00:00",
+    "ad_spend": 50970.63
+  },
+  {
+    "cost_id": 19,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-07-01T00:00:00",
+    "ad_spend": 44207.07
+  },
+  {
+    "cost_id": 23,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-08-01T00:00:00",
+    "ad_spend": 50794.84
+  },
+  {
+    "cost_id": 27,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-09-01T00:00:00",
+    "ad_spend": 48747.44
+  },
+  {
+    "cost_id": 31,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-10-01T00:00:00",
+    "ad_spend": 57788.96
+  },
+  {
+    "cost_id": 35,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-11-01T00:00:00",
+    "ad_spend": 74092.65
+  },
+  {
+    "cost_id": 39,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2019-12-01T00:00:00",
+    "ad_spend": 68288.35
+  },
+  {
+    "cost_id": 43,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-01-01T00:00:00",
+    "ad_spend": 65268.51
+  },
+  {
+    "cost_id": 47,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-02-01T00:00:00",
+    "ad_spend": 63991.02
+  },
+  {
+    "cost_id": 51,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-03-01T00:00:00",
+    "ad_spend": 80225.87
+  },
+  {
+    "cost_id": 55,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-04-01T00:00:00",
+    "ad_spend": 80217.05
+  },
+  {
+    "cost_id": 59,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-05-01T00:00:00",
+    "ad_spend": 73280.62
+  },
+  {
+    "cost_id": 63,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-06-01T00:00:00",
+    "ad_spend": 78511.48
+  },
+  {
+    "cost_id": 67,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-07-01T00:00:00",
+    "ad_spend": 61893.44
+  },
+  {
+    "cost_id": 71,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-08-01T00:00:00",
+    "ad_spend": 90995.06
+  },
+  {
+    "cost_id": 75,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-09-01T00:00:00",
+    "ad_spend": 75050.22
+  },
+  {
+    "cost_id": 79,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-10-01T00:00:00",
+    "ad_spend": 73632.98
+  },
+  {
+    "cost_id": 83,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-11-01T00:00:00",
+    "ad_spend": 95189.71
+  },
+  {
+    "cost_id": 87,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2020-12-01T00:00:00",
+    "ad_spend": 99417.03
+  },
+  {
+    "cost_id": 91,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-01-01T00:00:00",
+    "ad_spend": 58650.84
+  },
+  {
+    "cost_id": 95,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-02-01T00:00:00",
+    "ad_spend": 60233.95
+  },
+  {
+    "cost_id": 99,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-03-01T00:00:00",
+    "ad_spend": 70329.61
+  },
+  {
+    "cost_id": 103,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-04-01T00:00:00",
+    "ad_spend": 67477.59
+  },
+  {
+    "cost_id": 107,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-05-01T00:00:00",
+    "ad_spend": 63499.46
+  },
+  {
+    "cost_id": 111,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-06-01T00:00:00",
+    "ad_spend": 66269.14
+  },
+  {
+    "cost_id": 115,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-07-01T00:00:00",
+    "ad_spend": 64658.59
+  },
+  {
+    "cost_id": 119,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-08-01T00:00:00",
+    "ad_spend": 64107.79
+  },
+  {
+    "cost_id": 123,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-09-01T00:00:00",
+    "ad_spend": 76644.04
+  },
+  {
+    "cost_id": 127,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-10-01T00:00:00",
+    "ad_spend": 67285.63
+  },
+  {
+    "cost_id": 131,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-11-01T00:00:00",
+    "ad_spend": 83892.48
+  },
+  {
+    "cost_id": 135,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2021-12-01T00:00:00",
+    "ad_spend": 99928.18
+  },
+  {
+    "cost_id": 139,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-01-01T00:00:00",
+    "ad_spend": 51517.79
+  },
+  {
+    "cost_id": 143,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-02-01T00:00:00",
+    "ad_spend": 52152.21
+  },
+  {
+    "cost_id": 147,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-03-01T00:00:00",
+    "ad_spend": 56121.92
+  },
+  {
+    "cost_id": 151,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-04-01T00:00:00",
+    "ad_spend": 55034.17
+  },
+  {
+    "cost_id": 155,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-05-01T00:00:00",
+    "ad_spend": 54208.94
+  },
+  {
+    "cost_id": 159,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-06-01T00:00:00",
+    "ad_spend": 53850.71
+  },
+  {
+    "cost_id": 163,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-07-01T00:00:00",
+    "ad_spend": 48267.83
+  },
+  {
+    "cost_id": 167,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-08-01T00:00:00",
+    "ad_spend": 54888.79
+  },
+  {
+    "cost_id": 171,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-09-01T00:00:00",
+    "ad_spend": 51867.95
+  },
+  {
+    "cost_id": 175,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-10-01T00:00:00",
+    "ad_spend": 63663.31
+  },
+  {
+    "cost_id": 179,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-11-01T00:00:00",
+    "ad_spend": 87685.15
+  },
+  {
+    "cost_id": 183,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2022-12-01T00:00:00",
+    "ad_spend": 74143.33
+  },
+  {
+    "cost_id": 187,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-01-01T00:00:00",
+    "ad_spend": 39474.21
+  },
+  {
+    "cost_id": 191,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-02-01T00:00:00",
+    "ad_spend": 42990.27
+  },
+  {
+    "cost_id": 195,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-03-01T00:00:00",
+    "ad_spend": 49973.44
+  },
+  {
+    "cost_id": 199,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-04-01T00:00:00",
+    "ad_spend": 44581.5
+  },
+  {
+    "cost_id": 203,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-05-01T00:00:00",
+    "ad_spend": 57139.13
+  },
+  {
+    "cost_id": 207,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-06-01T00:00:00",
+    "ad_spend": 58628.02
+  },
+  {
+    "cost_id": 211,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-07-01T00:00:00",
+    "ad_spend": 46806.84
+  },
+  {
+    "cost_id": 215,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-08-01T00:00:00",
+    "ad_spend": 59601.04
+  },
+  {
+    "cost_id": 219,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-09-01T00:00:00",
+    "ad_spend": 52390.21
+  },
+  {
+    "cost_id": 223,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-10-01T00:00:00",
+    "ad_spend": 48071.5
+  },
+  {
+    "cost_id": 227,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-11-01T00:00:00",
+    "ad_spend": 80651.47
+  },
+  {
+    "cost_id": 231,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2023-12-01T00:00:00",
+    "ad_spend": 76025.37
+  },
+  {
+    "cost_id": 235,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-01-01T00:00:00",
+    "ad_spend": 55826.18
+  },
+  {
+    "cost_id": 239,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-02-01T00:00:00",
+    "ad_spend": 54786.61
+  },
+  {
+    "cost_id": 243,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-03-01T00:00:00",
+    "ad_spend": 55999.38
+  },
+  {
+    "cost_id": 247,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-04-01T00:00:00",
+    "ad_spend": 53605.09
+  },
+  {
+    "cost_id": 251,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-05-01T00:00:00",
+    "ad_spend": 62613.04
+  },
+  {
+    "cost_id": 255,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-06-01T00:00:00",
+    "ad_spend": 62968.33
+  },
+  {
+    "cost_id": 259,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-07-01T00:00:00",
+    "ad_spend": 54395.18
+  },
+  {
+    "cost_id": 263,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-08-01T00:00:00",
+    "ad_spend": 60858.48
+  },
+  {
+    "cost_id": 267,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-09-01T00:00:00",
+    "ad_spend": 58589.46
+  },
+  {
+    "cost_id": 271,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-10-01T00:00:00",
+    "ad_spend": 55548.1
+  },
+  {
+    "cost_id": 275,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-11-01T00:00:00",
+    "ad_spend": 81439.15
+  },
+  {
+    "cost_id": 279,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2024-12-01T00:00:00",
+    "ad_spend": 77851.18
+  },
+  {
+    "cost_id": 283,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-01-01T00:00:00",
+    "ad_spend": 47206.31
+  },
+  {
+    "cost_id": 287,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-02-01T00:00:00",
+    "ad_spend": 55173.17
+  },
+  {
+    "cost_id": 291,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-03-01T00:00:00",
+    "ad_spend": 67943.1
+  },
+  {
+    "cost_id": 295,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-04-01T00:00:00",
+    "ad_spend": 67951.16
+  },
+  {
+    "cost_id": 299,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-05-01T00:00:00",
+    "ad_spend": 67467.7
+  },
+  {
+    "cost_id": 303,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-06-01T00:00:00",
+    "ad_spend": 57983.34
+  },
+  {
+    "cost_id": 307,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-07-01T00:00:00",
+    "ad_spend": 56616.35
+  },
+  {
+    "cost_id": 311,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-08-01T00:00:00",
+    "ad_spend": 65944.34
+  },
+  {
+    "cost_id": 315,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-09-01T00:00:00",
+    "ad_spend": 70119.27
+  },
+  {
+    "cost_id": 319,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-10-01T00:00:00",
+    "ad_spend": 64227.6
+  },
+  {
+    "cost_id": 323,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-11-01T00:00:00",
+    "ad_spend": 79966.69
+  },
+  {
+    "cost_id": 327,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2025-12-01T00:00:00",
+    "ad_spend": 88048.49
+  },
+  {
+    "cost_id": 331,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2026-01-01T00:00:00",
+    "ad_spend": 55342.63
+  },
+  {
+    "cost_id": 335,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2026-02-01T00:00:00",
+    "ad_spend": 60763.77
+  },
+  {
+    "cost_id": 339,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2026-03-01T00:00:00",
+    "ad_spend": 63664.9
+  },
+  {
+    "cost_id": 343,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2026-04-01T00:00:00",
+    "ad_spend": 71896.73
+  },
+  {
+    "cost_id": 347,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2026-05-01T00:00:00",
+    "ad_spend": 70377.65
+  },
+  {
+    "cost_id": 351,
+    "channel_id": 3,
+    "channel_name": "Mercado Libre",
+    "channel_type": "Virtual",
+    "cost_date": "2026-06-01T00:00:00",
+    "ad_spend": 65083.9
+  },
+  {
+    "cost_id": 2,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-03-01T00:00:00",
+    "ad_spend": 106459.43
+  },
+  {
+    "cost_id": 6,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-04-01T00:00:00",
+    "ad_spend": 97281.21
+  },
+  {
+    "cost_id": 10,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-05-01T00:00:00",
+    "ad_spend": 120739.23
+  },
+  {
+    "cost_id": 14,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-06-01T00:00:00",
+    "ad_spend": 110849.04
+  },
+  {
+    "cost_id": 18,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-07-01T00:00:00",
+    "ad_spend": 76427.69
+  },
+  {
+    "cost_id": 22,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-08-01T00:00:00",
+    "ad_spend": 90824.38
+  },
+  {
+    "cost_id": 26,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-09-01T00:00:00",
+    "ad_spend": 119532.78
+  },
+  {
+    "cost_id": 30,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-10-01T00:00:00",
+    "ad_spend": 109368.62
+  },
+  {
+    "cost_id": 34,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-11-01T00:00:00",
+    "ad_spend": 152774.18
+  },
+  {
+    "cost_id": 38,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2019-12-01T00:00:00",
+    "ad_spend": 161751.6
+  },
+  {
+    "cost_id": 42,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-01-01T00:00:00",
+    "ad_spend": 157804.53
+  },
+  {
+    "cost_id": 46,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-02-01T00:00:00",
+    "ad_spend": 140593.97
+  },
+  {
+    "cost_id": 50,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-03-01T00:00:00",
+    "ad_spend": 169953.31
+  },
+  {
+    "cost_id": 54,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-04-01T00:00:00",
+    "ad_spend": 154073.72
+  },
+  {
+    "cost_id": 58,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-05-01T00:00:00",
+    "ad_spend": 149590.33
+  },
+  {
+    "cost_id": 62,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-06-01T00:00:00",
+    "ad_spend": 163722.85
+  },
+  {
+    "cost_id": 66,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-07-01T00:00:00",
+    "ad_spend": 142855.38
+  },
+  {
+    "cost_id": 70,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-08-01T00:00:00",
+    "ad_spend": 153168.06
+  },
+  {
+    "cost_id": 74,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-09-01T00:00:00",
+    "ad_spend": 143246.39
+  },
+  {
+    "cost_id": 78,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-10-01T00:00:00",
+    "ad_spend": 163045.63
+  },
+  {
+    "cost_id": 82,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-11-01T00:00:00",
+    "ad_spend": 224497.1
+  },
+  {
+    "cost_id": 86,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2020-12-01T00:00:00",
+    "ad_spend": 213352.85
+  },
+  {
+    "cost_id": 90,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-01-01T00:00:00",
+    "ad_spend": 137957.36
+  },
+  {
+    "cost_id": 94,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-02-01T00:00:00",
+    "ad_spend": 119528.72
+  },
+  {
+    "cost_id": 98,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-03-01T00:00:00",
+    "ad_spend": 127522.18
+  },
+  {
+    "cost_id": 102,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-04-01T00:00:00",
+    "ad_spend": 135813.95
+  },
+  {
+    "cost_id": 106,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-05-01T00:00:00",
+    "ad_spend": 143374.81
+  },
+  {
+    "cost_id": 110,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-06-01T00:00:00",
+    "ad_spend": 125470.97
+  },
+  {
+    "cost_id": 114,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-07-01T00:00:00",
+    "ad_spend": 124175.15
+  },
+  {
+    "cost_id": 118,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-08-01T00:00:00",
+    "ad_spend": 161909.64
+  },
+  {
+    "cost_id": 122,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-09-01T00:00:00",
+    "ad_spend": 162275.58
+  },
+  {
+    "cost_id": 126,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-10-01T00:00:00",
+    "ad_spend": 129195.87
+  },
+  {
+    "cost_id": 130,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-11-01T00:00:00",
+    "ad_spend": 191073.82
+  },
+  {
+    "cost_id": 134,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2021-12-01T00:00:00",
+    "ad_spend": 181016.18
+  },
+  {
+    "cost_id": 138,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-01-01T00:00:00",
+    "ad_spend": 90362.06
+  },
+  {
+    "cost_id": 142,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-02-01T00:00:00",
+    "ad_spend": 93740.49
+  },
+  {
+    "cost_id": 146,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-03-01T00:00:00",
+    "ad_spend": 109467.3
+  },
+  {
+    "cost_id": 150,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-04-01T00:00:00",
+    "ad_spend": 128891.52
+  },
+  {
+    "cost_id": 154,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-05-01T00:00:00",
+    "ad_spend": 127859.16
+  },
+  {
+    "cost_id": 158,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-06-01T00:00:00",
+    "ad_spend": 132790.96
+  },
+  {
+    "cost_id": 162,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-07-01T00:00:00",
+    "ad_spend": 92066.73
+  },
+  {
+    "cost_id": 166,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-08-01T00:00:00",
+    "ad_spend": 111308.82
+  },
+  {
+    "cost_id": 170,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-09-01T00:00:00",
+    "ad_spend": 104401.6
+  },
+  {
+    "cost_id": 174,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-10-01T00:00:00",
+    "ad_spend": 124722.19
+  },
+  {
+    "cost_id": 178,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-11-01T00:00:00",
+    "ad_spend": 173182.8
+  },
+  {
+    "cost_id": 182,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2022-12-01T00:00:00",
+    "ad_spend": 157027.85
+  },
+  {
+    "cost_id": 186,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-01-01T00:00:00",
+    "ad_spend": 79500.77
+  },
+  {
+    "cost_id": 190,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-02-01T00:00:00",
+    "ad_spend": 78076.66
+  },
+  {
+    "cost_id": 194,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-03-01T00:00:00",
+    "ad_spend": 91250.76
+  },
+  {
+    "cost_id": 198,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-04-01T00:00:00",
+    "ad_spend": 103400.96
+  },
+  {
+    "cost_id": 202,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-05-01T00:00:00",
+    "ad_spend": 113409.79
+  },
+  {
+    "cost_id": 206,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-06-01T00:00:00",
+    "ad_spend": 103230.59
+  },
+  {
+    "cost_id": 210,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-07-01T00:00:00",
+    "ad_spend": 90450.06
+  },
+  {
+    "cost_id": 214,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-08-01T00:00:00",
+    "ad_spend": 92077.11
+  },
+  {
+    "cost_id": 218,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-09-01T00:00:00",
+    "ad_spend": 104134.99
+  },
+  {
+    "cost_id": 222,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-10-01T00:00:00",
+    "ad_spend": 116000.71
+  },
+  {
+    "cost_id": 226,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-11-01T00:00:00",
+    "ad_spend": 143908.43
+  },
+  {
+    "cost_id": 230,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2023-12-01T00:00:00",
+    "ad_spend": 148329.33
+  },
+  {
+    "cost_id": 234,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-01-01T00:00:00",
+    "ad_spend": 99261.12
+  },
+  {
+    "cost_id": 238,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-02-01T00:00:00",
+    "ad_spend": 113261.64
+  },
+  {
+    "cost_id": 242,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-03-01T00:00:00",
+    "ad_spend": 112412.06
+  },
+  {
+    "cost_id": 246,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-04-01T00:00:00",
+    "ad_spend": 136209.44
+  },
+  {
+    "cost_id": 250,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-05-01T00:00:00",
+    "ad_spend": 137583.88
+  },
+  {
+    "cost_id": 254,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-06-01T00:00:00",
+    "ad_spend": 132744.87
+  },
+  {
+    "cost_id": 258,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-07-01T00:00:00",
+    "ad_spend": 104662.87
+  },
+  {
+    "cost_id": 262,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-08-01T00:00:00",
+    "ad_spend": 118850.65
+  },
+  {
+    "cost_id": 266,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-09-01T00:00:00",
+    "ad_spend": 135813.38
+  },
+  {
+    "cost_id": 270,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-10-01T00:00:00",
+    "ad_spend": 124561.33
+  },
+  {
+    "cost_id": 274,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-11-01T00:00:00",
+    "ad_spend": 170740.43
+  },
+  {
+    "cost_id": 278,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2024-12-01T00:00:00",
+    "ad_spend": 145450.65
+  },
+  {
+    "cost_id": 282,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-01-01T00:00:00",
+    "ad_spend": 119281.53
+  },
+  {
+    "cost_id": 286,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-02-01T00:00:00",
+    "ad_spend": 107320.57
+  },
+  {
+    "cost_id": 290,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-03-01T00:00:00",
+    "ad_spend": 121227.74
+  },
+  {
+    "cost_id": 294,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-04-01T00:00:00",
+    "ad_spend": 135128.31
+  },
+  {
+    "cost_id": 298,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-05-01T00:00:00",
+    "ad_spend": 118500.66
+  },
+  {
+    "cost_id": 302,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-06-01T00:00:00",
+    "ad_spend": 123378.25
+  },
+  {
+    "cost_id": 306,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-07-01T00:00:00",
+    "ad_spend": 113112.05
+  },
+  {
+    "cost_id": 310,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-08-01T00:00:00",
+    "ad_spend": 149606.99
+  },
+  {
+    "cost_id": 314,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-09-01T00:00:00",
+    "ad_spend": 148416.76
+  },
+  {
+    "cost_id": 318,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-10-01T00:00:00",
+    "ad_spend": 146837.36
+  },
+  {
+    "cost_id": 322,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-11-01T00:00:00",
+    "ad_spend": 199198.81
+  },
+  {
+    "cost_id": 326,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2025-12-01T00:00:00",
+    "ad_spend": 202340.91
+  },
+  {
+    "cost_id": 330,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2026-01-01T00:00:00",
+    "ad_spend": 113515.44
+  },
+  {
+    "cost_id": 334,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2026-02-01T00:00:00",
+    "ad_spend": 101837.16
+  },
+  {
+    "cost_id": 338,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2026-03-01T00:00:00",
+    "ad_spend": 119374.66
+  },
+  {
+    "cost_id": 342,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2026-04-01T00:00:00",
+    "ad_spend": 150684.73
+  },
+  {
+    "cost_id": 346,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2026-05-01T00:00:00",
+    "ad_spend": 149078.55
+  },
+  {
+    "cost_id": 350,
+    "channel_id": 4,
+    "channel_name": "Página web",
+    "channel_type": "Virtual",
+    "cost_date": "2026-06-01T00:00:00",
+    "ad_spend": 138492.98
+  },
+  {
+    "cost_id": 4,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-03-01T00:00:00",
+    "ad_spend": 18566.18
+  },
+  {
+    "cost_id": 8,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-04-01T00:00:00",
+    "ad_spend": 18322.51
+  },
+  {
+    "cost_id": 12,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-05-01T00:00:00",
+    "ad_spend": 20575.96
+  },
+  {
+    "cost_id": 16,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-06-01T00:00:00",
+    "ad_spend": 19845.97
+  },
+  {
+    "cost_id": 20,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-07-01T00:00:00",
+    "ad_spend": 17565.0
+  },
+  {
+    "cost_id": 24,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-08-01T00:00:00",
+    "ad_spend": 20279.74
+  },
+  {
+    "cost_id": 28,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-09-01T00:00:00",
+    "ad_spend": 19944.73
+  },
+  {
+    "cost_id": 32,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-10-01T00:00:00",
+    "ad_spend": 17399.19
+  },
+  {
+    "cost_id": 36,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-11-01T00:00:00",
+    "ad_spend": 26744.04
+  },
+  {
+    "cost_id": 40,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2019-12-01T00:00:00",
+    "ad_spend": 26963.99
+  },
+  {
+    "cost_id": 44,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-01-01T00:00:00",
+    "ad_spend": 23849.31
+  },
+  {
+    "cost_id": 48,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-02-01T00:00:00",
+    "ad_spend": 24983.81
+  },
+  {
+    "cost_id": 52,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-03-01T00:00:00",
+    "ad_spend": 29441.46
+  },
+  {
+    "cost_id": 56,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-04-01T00:00:00",
+    "ad_spend": 26099.38
+  },
+  {
+    "cost_id": 60,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-05-01T00:00:00",
+    "ad_spend": 26774.24
+  },
+  {
+    "cost_id": 64,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-06-01T00:00:00",
+    "ad_spend": 27459.1
+  },
+  {
+    "cost_id": 68,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-07-01T00:00:00",
+    "ad_spend": 21241.51
+  },
+  {
+    "cost_id": 72,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-08-01T00:00:00",
+    "ad_spend": 27224.92
+  },
+  {
+    "cost_id": 76,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-09-01T00:00:00",
+    "ad_spend": 31794.27
+  },
+  {
+    "cost_id": 80,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-10-01T00:00:00",
+    "ad_spend": 32046.53
+  },
+  {
+    "cost_id": 84,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-11-01T00:00:00",
+    "ad_spend": 33555.21
+  },
+  {
+    "cost_id": 88,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2020-12-01T00:00:00",
+    "ad_spend": 42549.37
+  },
+  {
+    "cost_id": 92,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-01-01T00:00:00",
+    "ad_spend": 22215.99
+  },
+  {
+    "cost_id": 96,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-02-01T00:00:00",
+    "ad_spend": 21133.71
+  },
+  {
+    "cost_id": 100,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-03-01T00:00:00",
+    "ad_spend": 22366.61
+  },
+  {
+    "cost_id": 104,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-04-01T00:00:00",
+    "ad_spend": 22102.11
+  },
+  {
+    "cost_id": 108,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-05-01T00:00:00",
+    "ad_spend": 22412.19
+  },
+  {
+    "cost_id": 112,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-06-01T00:00:00",
+    "ad_spend": 26907.59
+  },
+  {
+    "cost_id": 116,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-07-01T00:00:00",
+    "ad_spend": 21722.04
+  },
+  {
+    "cost_id": 120,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-08-01T00:00:00",
+    "ad_spend": 24632.91
+  },
+  {
+    "cost_id": 124,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-09-01T00:00:00",
+    "ad_spend": 22465.97
+  },
+  {
+    "cost_id": 128,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-10-01T00:00:00",
+    "ad_spend": 24330.91
+  },
+  {
+    "cost_id": 132,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-11-01T00:00:00",
+    "ad_spend": 31029.76
+  },
+  {
+    "cost_id": 136,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2021-12-01T00:00:00",
+    "ad_spend": 34944.23
+  },
+  {
+    "cost_id": 140,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-01-01T00:00:00",
+    "ad_spend": 14790.22
+  },
+  {
+    "cost_id": 144,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-02-01T00:00:00",
+    "ad_spend": 18302.29
+  },
+  {
+    "cost_id": 148,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-03-01T00:00:00",
+    "ad_spend": 20107.14
+  },
+  {
+    "cost_id": 152,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-04-01T00:00:00",
+    "ad_spend": 16903.16
+  },
+  {
+    "cost_id": 156,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-05-01T00:00:00",
+    "ad_spend": 18766.86
+  },
+  {
+    "cost_id": 160,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-06-01T00:00:00",
+    "ad_spend": 19910.03
+  },
+  {
+    "cost_id": 164,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-07-01T00:00:00",
+    "ad_spend": 17732.45
+  },
+  {
+    "cost_id": 168,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-08-01T00:00:00",
+    "ad_spend": 18892.96
+  },
+  {
+    "cost_id": 172,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-09-01T00:00:00",
+    "ad_spend": 21181.3
+  },
+  {
+    "cost_id": 176,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-10-01T00:00:00",
+    "ad_spend": 17763.93
+  },
+  {
+    "cost_id": 180,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-11-01T00:00:00",
+    "ad_spend": 28525.84
+  },
+  {
+    "cost_id": 184,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2022-12-01T00:00:00",
+    "ad_spend": 27038.67
+  },
+  {
+    "cost_id": 188,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-01-01T00:00:00",
+    "ad_spend": 13936.13
+  },
+  {
+    "cost_id": 192,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-02-01T00:00:00",
+    "ad_spend": 15117.25
+  },
+  {
+    "cost_id": 196,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-03-01T00:00:00",
+    "ad_spend": 19890.62
+  },
+  {
+    "cost_id": 200,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-04-01T00:00:00",
+    "ad_spend": 19487.37
+  },
+  {
+    "cost_id": 204,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-05-01T00:00:00",
+    "ad_spend": 20021.82
+  },
+  {
+    "cost_id": 208,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-06-01T00:00:00",
+    "ad_spend": 19388.45
+  },
+  {
+    "cost_id": 212,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-07-01T00:00:00",
+    "ad_spend": 14939.36
+  },
+  {
+    "cost_id": 216,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-08-01T00:00:00",
+    "ad_spend": 20633.04
+  },
+  {
+    "cost_id": 220,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-09-01T00:00:00",
+    "ad_spend": 19953.32
+  },
+  {
+    "cost_id": 224,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-10-01T00:00:00",
+    "ad_spend": 16295.28
+  },
+  {
+    "cost_id": 228,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-11-01T00:00:00",
+    "ad_spend": 26473.11
+  },
+  {
+    "cost_id": 232,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2023-12-01T00:00:00",
+    "ad_spend": 27831.65
+  },
+  {
+    "cost_id": 236,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-01-01T00:00:00",
+    "ad_spend": 17346.39
+  },
+  {
+    "cost_id": 240,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-02-01T00:00:00",
+    "ad_spend": 17524.91
+  },
+  {
+    "cost_id": 244,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-03-01T00:00:00",
+    "ad_spend": 18301.53
+  },
+  {
+    "cost_id": 248,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-04-01T00:00:00",
+    "ad_spend": 18644.69
+  },
+  {
+    "cost_id": 252,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-05-01T00:00:00",
+    "ad_spend": 22469.39
+  },
+  {
+    "cost_id": 256,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-06-01T00:00:00",
+    "ad_spend": 22562.89
+  },
+  {
+    "cost_id": 260,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-07-01T00:00:00",
+    "ad_spend": 15599.85
+  },
+  {
+    "cost_id": 264,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-08-01T00:00:00",
+    "ad_spend": 23074.62
+  },
+  {
+    "cost_id": 268,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-09-01T00:00:00",
+    "ad_spend": 21275.18
+  },
+  {
+    "cost_id": 272,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-10-01T00:00:00",
+    "ad_spend": 18056.02
+  },
+  {
+    "cost_id": 276,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-11-01T00:00:00",
+    "ad_spend": 28101.77
+  },
+  {
+    "cost_id": 280,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2024-12-01T00:00:00",
+    "ad_spend": 31921.78
+  },
+  {
+    "cost_id": 284,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-01-01T00:00:00",
+    "ad_spend": 20238.17
+  },
+  {
+    "cost_id": 288,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-02-01T00:00:00",
+    "ad_spend": 20839.17
+  },
+  {
+    "cost_id": 292,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-03-01T00:00:00",
+    "ad_spend": 23404.35
+  },
+  {
+    "cost_id": 296,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-04-01T00:00:00",
+    "ad_spend": 23515.94
+  },
+  {
+    "cost_id": 300,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-05-01T00:00:00",
+    "ad_spend": 23759.42
+  },
+  {
+    "cost_id": 304,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-06-01T00:00:00",
+    "ad_spend": 21278.95
+  },
+  {
+    "cost_id": 308,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-07-01T00:00:00",
+    "ad_spend": 20809.51
+  },
+  {
+    "cost_id": 312,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-08-01T00:00:00",
+    "ad_spend": 22597.33
+  },
+  {
+    "cost_id": 316,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-09-01T00:00:00",
+    "ad_spend": 22670.67
+  },
+  {
+    "cost_id": 320,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-10-01T00:00:00",
+    "ad_spend": 21030.82
+  },
+  {
+    "cost_id": 324,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-11-01T00:00:00",
+    "ad_spend": 29466.06
+  },
+  {
+    "cost_id": 328,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2025-12-01T00:00:00",
+    "ad_spend": 30444.19
+  },
+  {
+    "cost_id": 332,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2026-01-01T00:00:00",
+    "ad_spend": 17754.14
+  },
+  {
+    "cost_id": 336,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2026-02-01T00:00:00",
+    "ad_spend": 17026.97
+  },
+  {
+    "cost_id": 340,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2026-03-01T00:00:00",
+    "ad_spend": 24459.41
+  },
+  {
+    "cost_id": 344,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2026-04-01T00:00:00",
+    "ad_spend": 20558.79
+  },
+  {
+    "cost_id": 348,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2026-05-01T00:00:00",
+    "ad_spend": 19615.43
+  },
+  {
+    "cost_id": 352,
+    "channel_id": 5,
+    "channel_name": "Facebook/Messenger",
+    "channel_type": "Virtual",
+    "cost_date": "2026-06-01T00:00:00",
+    "ad_spend": 24531.97
+  }
+]
