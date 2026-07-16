@@ -5,7 +5,7 @@
 
 const DATA_PATHS = {
     sales: "./frontend/data/sales.json",
-    marketingCosts: "/frontend/data/marketing-costs.json"
+    marketingCosts: "./frontend/data/marketing-costs.json"
 };
 
 
