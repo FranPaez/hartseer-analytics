@@ -1,10 +1,15 @@
 # Hartseer Analytics
 
-**End-to-End Business Intelligence Platform for Retail Business Analysis**
+### End-to-End Business Intelligence Platform for Retail Business Analysis
+
+[🌐 Live Demo](https://franpaez.github.io/hartseer-analytics/) •
+[📄 Documentation](analytics/documentation/Hartseer_Documentation.pdf) •
+[📘 Frontend Documentation](analytics/documentation/Hartseer_Frontend_Documentation.pdf) •
+[🎨 Analytics Design](analytics/documentation/Hartseer_Design_Analytics.pdf) •
 
 SQL • Power BI • JavaScript • MySQL • Chart.js
 
-![Executive Dashboard](assets/images/executive-dashboard.png)
+![Executive Dashboard](frontend/assets/images/executive-dashboard.png)
 
 ---
 
@@ -47,7 +52,7 @@ The project combines relational database design, SQL analytics, Business Intelli
 
 ## Project Architecture
 
-![Architecture](assets/images/architecture.png)
+![Architecture](frontend/assets/images/architecture.png)
 
 ---
 
@@ -101,25 +106,25 @@ Hartseer Analytics
 
 ### Executive Dashboard
 
-![Executive Dashboard](assets/images/executive-dashboard.png)
+![Executive Dashboard](frontend/assets/images/executive-dashboard.png)
 
 ---
 
 ### Products Dashboard
 
-![Products Dashboard](assets/images/products-dashboard.png)
+![Products Dashboard](frontend/assets/images/products-dashboard.png)
 
 ---
 
 ### Customers Dashboard
 
-![Customers Dashboard](assets/images/customers-dashboard.png)
+![Customers Dashboard](frontend/assets/images/customers-dashboard.png)
 
 ---
 
 ### Marketing Dashboard
 
-![Marketing Dashboard](assets/images/marketing-dashboard.png)
+![Marketing Dashboard](frontend/assets/images/marketing-dashboard.png)
 
 ---
 
