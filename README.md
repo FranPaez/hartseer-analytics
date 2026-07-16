@@ -127,7 +127,7 @@ Hartseer Analytics
 
 The project includes complete technical documentation covering every development stage.
 
-- 📄 **Hartseer Documentation**
+- 📄 **Hartseer Documentation** 
   - Complete project development process.
 
 - 📄 **Hartseer Analytics Design**
