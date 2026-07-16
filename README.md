@@ -3,9 +3,9 @@
 ### End-to-End Business Intelligence Platform for Retail Business Analysis
 
 [🌐 Live Demo](https://franpaez.github.io/hartseer-analytics/) •
-[📄 Documentation](analytics/documentation/Hartseer_Documentation.pdf) •
-[📘 Frontend Documentation](analytics/documentation/Hartseer_Frontend_Documentation.pdf) •
-[🎨 Analytics Design](analytics/documentation/Hartseer_Design_Analytics.pdf) •
+[📄 Documentation](https://github.com/FranPaez/hartseer-analytics/blob/main/analytics/documentation/Hartseer_Analytics_Documentation.pdf) •
+[📘 Frontend Documentation](https://github.com/FranPaez/hartseer-analytics/blob/main/analytics/documentation/Hartseer_Frontend_Documentation.pdf) •
+[🎨 Analytics Design](https://github.com/FranPaez/hartseer-analytics/blob/main/analytics/documentation/Hartseer_Desing_Analytics.pdf) •
 
 SQL • Power BI • JavaScript • MySQL • Chart.js
 

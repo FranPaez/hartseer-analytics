@@ -57,7 +57,7 @@ function renderExecutive() {
                             aria-hidden="true"
                         >
                             <img
-                                src="./assets/icons/cards/dollar-sign.svg"
+                                src="./frontend/assets/icons/cards/dollar-sign.svg"
                                 alt=""
                                 class="kpi-card__icon-image"
                             >
@@ -82,7 +82,7 @@ function renderExecutive() {
                         >
                             <img
                                 id="executive-revenue-trend-icon"
-                                src="./assets/icons/trends/minus.svg"
+                                src="./frontend/assets/icons/trends/minus.svg"
                                 alt=""
                                 class="kpi-card__trend-icon"
                             >
@@ -105,7 +105,7 @@ function renderExecutive() {
                             aria-hidden="true"
                         >
                             <img
-                                src="./assets/icons/cards/dollar-sign.svg"
+                                src="./frontend/assets/icons/cards/dollar-sign.svg"
                                 alt=""
                                 class="kpi-card__icon-image"
                             >
@@ -130,7 +130,7 @@ function renderExecutive() {
                         >
                             <img
                                 id="executive-profit-trend-icon"
-                                src="./assets/icons/trends/minus.svg"
+                                src="./frontend/assets/icons/trends/minus.svg"
                                 alt=""
                                 class="kpi-card__trend-icon"
                             >
@@ -153,7 +153,7 @@ function renderExecutive() {
                             aria-hidden="true"
                         >
                             <img
-                                src="./assets/icons/cards/percent.svg"
+                                src="./frontend/assets/icons/cards/percent.svg"
                                 alt=""
                                 class="kpi-card__icon-image"
                             >
@@ -178,7 +178,7 @@ function renderExecutive() {
                         >
                             <img
                                 id="executive-margin-trend-icon"
-                                src="./assets/icons/trends/minus.svg"
+                                src="./frontend/assets/icons/trends/minus.svg"
                                 alt=""
                                 class="kpi-card__trend-icon"
                             >
@@ -201,7 +201,7 @@ function renderExecutive() {
                             aria-hidden="true"
                         >
                             <img
-                                src="./assets/icons/cards/shopping-cart.svg"
+                                src="./frontend/assets/icons/cards/shopping-cart.svg"
                                 alt=""
                                 class="kpi-card__icon-image"
                             >
@@ -226,7 +226,7 @@ function renderExecutive() {
                         >
                             <img
                                 id="executive-orders-trend-icon"
-                                src="./assets/icons/trends/minus.svg"
+                                src="./frontend/assets/icons/trends/minus.svg"
                                 alt=""
                                 class="kpi-card__trend-icon"
                             >
@@ -249,7 +249,7 @@ function renderExecutive() {
                             aria-hidden="true"
                         >
                             <img
-                                src="./assets/icons/cards/receipt.svg"
+                                src="./frontend/assets/icons/cards/receipt.svg"
                                 alt=""
                                 class="kpi-card__icon-image"
                             >
@@ -274,7 +274,7 @@ function renderExecutive() {
                         >
                             <img
                                 id="executive-aov-trend-icon"
-                                src="./assets/icons/trends/minus.svg"
+                                src="./frontend/assets/icons/trends/minus.svg"
                                 alt=""
                                 class="kpi-card__trend-icon"
                             >
@@ -297,7 +297,7 @@ function renderExecutive() {
                             aria-hidden="true"
                         >
                             <img
-                                src="./assets/icons/cards/users.svg"
+                                src="./frontend/assets/icons/cards/users.svg"
                                 alt=""
                                 class="kpi-card__icon-image"
                             >
@@ -322,7 +322,7 @@ function renderExecutive() {
                         >
                             <img
                                 id="executive-customers-trend-icon"
-                                src="./assets/icons/trends/minus.svg"
+                                src="./frontend/assets/icons/trends/minus.svg"
                                 alt=""
                                 class="kpi-card__trend-icon"
                             >

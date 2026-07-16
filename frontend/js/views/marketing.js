@@ -11,7 +11,7 @@ function renderMarketing() {
         >
             <img
                 id="marketing-${metricName}-trend-icon"
-                src="./assets/icons/trends/minus.svg"
+                src="./frontend/assets/icons/trends/minus.svg"
                 alt=""
                 class="kpi-card__trend-icon"
             >
@@ -62,7 +62,7 @@ function renderMarketing() {
                     <article class="kpi-card">
                         <div class="kpi-card__header">
                             <div class="kpi-card__icon" aria-hidden="true">
-                                <img src="./assets/icons/cards/${icon}" alt="" class="kpi-card__icon-image">
+                                <img src="./frontend/assets/icons/cards/${icon}" alt="" class="kpi-card__icon-image">
                             </div>
                             <h2 class="kpi-card__title">${title}</h2>
                         </div>

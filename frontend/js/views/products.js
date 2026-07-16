@@ -69,7 +69,7 @@ function renderProducts() {
                     <div class="kpi-card__header">
                         <div class="kpi-card__icon" aria-hidden="true">
                             <img
-                                src="./assets/icons/cards/dollar-sign.svg"
+                                src="./frontend/assets/icons/cards/dollar-sign.svg"
                                 alt=""
                                 class="kpi-card__icon-image"
                             >
@@ -111,7 +111,7 @@ function renderProducts() {
                     <div class="kpi-card__header">
                         <div class="kpi-card__icon" aria-hidden="true">
                             <img
-                                src="./assets/icons/cards/dollar-sign.svg"
+                                src="./frontend/assets/icons/cards/dollar-sign.svg"
                                 alt=""
                                 class="kpi-card__icon-image"
                             >
@@ -153,7 +153,7 @@ function renderProducts() {
                     <div class="kpi-card__header">
                         <div class="kpi-card__icon" aria-hidden="true">
                             <img
-                                src="./assets/icons/cards/trending-up.svg"
+                                src="./frontend/assets/icons/cards/trending-up.svg"
                                 alt=""
                                 class="kpi-card__icon-image"
                             >

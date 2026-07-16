@@ -400,13 +400,13 @@ function getSelectedDatePeriods(
 function getTrendIconPath(direction) {
     const icons = {
         positive:
-            "./assets/icons/trends/trending-up.svg",
+            "./frontend/assets/icons/trends/trending-up.svg",
 
         negative:
-            "./assets/icons/trends/trending-down.svg",
+            "./frontend/assets/icons/trends/trending-down.svg",
 
         neutral:
-            "./assets/icons/trends/minus.svg"
+            "./frontend/assets/icons/trends/minus.svg"
     };
 
     return icons[direction] ?? icons.neutral;

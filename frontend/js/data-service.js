@@ -4,8 +4,8 @@
 /* -- DATA PATHS --*/
 
 const DATA_PATHS = {
-    sales: "./data/sales.json",
-    marketingCosts: "./data/marketing-costs.json"
+    sales: "./frontend/data/sales.json",
+    marketingCosts: "/frontend/data/marketing-costs.json"
 };
 
 

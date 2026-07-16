@@ -11,7 +11,7 @@ function renderCustomers() {
         >
             <img
                 id="customers-${metricName}-trend-icon"
-                src="./assets/icons/trends/minus.svg"
+                src="./frontend/assets/icons/trends/minus.svg"
                 alt=""
                 class="kpi-card__trend-icon"
             >
@@ -50,7 +50,7 @@ function renderCustomers() {
                 <article class="kpi-card">
                     <div class="kpi-card__header">
                         <div class="kpi-card__icon" aria-hidden="true">
-                            <img src="./assets/icons/cards/user-round-plus.svg" alt="" class="kpi-card__icon-image">
+                            <img src="./frontend/assets/icons/cards/user-round-plus.svg" alt="" class="kpi-card__icon-image">
                         </div>
                         <h2 class="kpi-card__title">New Customers</h2>
                     </div>
@@ -64,7 +64,7 @@ function renderCustomers() {
                 <article class="kpi-card">
                     <div class="kpi-card__header">
                         <div class="kpi-card__icon" aria-hidden="true">
-                            <img src="./assets/icons/cards/user-star.svg" alt="" class="kpi-card__icon-image">
+                            <img src="./frontend/assets/icons/cards/user-star.svg" alt="" class="kpi-card__icon-image">
                         </div>
                         <h2 class="kpi-card__title">Returning Customers</h2>
                     </div>
@@ -78,7 +78,7 @@ function renderCustomers() {
                 <article class="kpi-card">
                     <div class="kpi-card__header">
                         <div class="kpi-card__icon" aria-hidden="true">
-                            <img src="./assets/icons/cards/user-minus.svg" alt="" class="kpi-card__icon-image">
+                            <img src="./frontend/assets/icons/cards/user-minus.svg" alt="" class="kpi-card__icon-image">
                         </div>
                         <h2 class="kpi-card__title">One-time Customers</h2>
                     </div>
@@ -92,7 +92,7 @@ function renderCustomers() {
                 <article class="kpi-card">
                     <div class="kpi-card__header">
                         <div class="kpi-card__icon" aria-hidden="true">
-                            <img src="./assets/icons/cards/dollar-sign.svg" alt="" class="kpi-card__icon-image">
+                            <img src="./frontend/assets/icons/cards/dollar-sign.svg" alt="" class="kpi-card__icon-image">
                         </div>
                         <h2 class="kpi-card__title">Top Revenue Customer</h2>
                     </div>
@@ -106,7 +106,7 @@ function renderCustomers() {
                 <article class="kpi-card">
                     <div class="kpi-card__header">
                         <div class="kpi-card__icon" aria-hidden="true">
-                            <img src="./assets/icons/cards/dollar-sign.svg" alt="" class="kpi-card__icon-image">
+                            <img src="./frontend/assets/icons/cards/dollar-sign.svg" alt="" class="kpi-card__icon-image">
                         </div>
                         <h2 class="kpi-card__title">Top Profit Customer</h2>
                     </div>
@@ -120,7 +120,7 @@ function renderCustomers() {
                 <article class="kpi-card">
                     <div class="kpi-card__header">
                         <div class="kpi-card__icon" aria-hidden="true">
-                            <img src="./assets/icons/cards/percent.svg" alt="" class="kpi-card__icon-image">
+                            <img src="./frontend/assets/icons/cards/percent.svg" alt="" class="kpi-card__icon-image">
                         </div>
                         <h2 class="kpi-card__title">Recurrence Rate</h2>
                     </div>
