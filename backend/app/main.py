@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 
+from app.core.config import settings
+
 
 app = FastAPI(
-    title="Hartseer Analytics API",
-    description=(
-        "REST API responsible for exposing business analytics data "
-        "used by Hartseer Analytics dashboards."
-    ),
-    version="1.0.0",
+    title=settings.API_TITLE,
+    description=settings.API_DESCRIPTION,
+    version=settings.API_VERSION,
     contact={
         "name": "Franco Paez",
     },
