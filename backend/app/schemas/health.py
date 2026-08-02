@@ -7,6 +7,7 @@ class HealthDataSchema(BaseModel):
     """Health check response data."""
 
     status: str
+    database: str
 
 
 class HealthResponseSchema(BaseModel):
