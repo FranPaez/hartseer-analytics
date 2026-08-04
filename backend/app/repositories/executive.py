@@ -16,6 +16,7 @@ class ExecutiveRepository:
         cursor = connection.cursor(dictionary=True)
 
         try:
+
             # Financial KPIs
             cursor.execute(
                 """
@@ -55,13 +56,15 @@ class ExecutiveRepository:
 
             financial = cursor.fetchone()
 
-            # Orders & Customers
+            # Business KPIs
             cursor.execute(
                 """
                 SELECT
                     COUNT(*) AS orders,
                     COUNT(DISTINCT id_cliente) AS customers
+
                 FROM compra
+
                 WHERE fecha >= %s
                 AND fecha < DATE_ADD(%s, INTERVAL 1 DAY);
                 """,
@@ -93,6 +96,50 @@ class ExecutiveRepository:
 
             aov = cursor.fetchone()
 
+            # Trend Charts
+            cursor.execute(
+                """
+                SELECT
+                    DATE_FORMAT(co.fecha, '%Y-%m') AS period,
+
+                    COALESCE(
+                        SUM(dc.subtotal),
+                        0
+                    ) AS revenue,
+
+                    COALESCE(
+                        SUM(dc.subtotal)
+                        - SUM(dc.cantidad * p.costo),
+                        0
+                    ) AS profit
+
+                FROM compra co
+
+                JOIN detalle_compra dc
+                    ON co.id_compra = dc.id_compra
+
+                JOIN productos p
+                    ON dc.id_producto = p.id_producto
+
+                WHERE co.fecha >= %s
+                AND co.fecha < DATE_ADD(%s, INTERVAL 1 DAY)
+
+                GROUP BY DATE_FORMAT(co.fecha, '%Y-%m')
+
+                ORDER BY period;
+                """,
+                (start_date, end_date),
+            )
+
+            trends = [
+                {
+                    "period": row["period"],
+                    "revenue": float(row["revenue"]),
+                    "profit": float(row["profit"]),
+                }
+                for row in cursor.fetchall()
+            ]
+
             return {
                 "revenue": float(financial["revenue"]),
                 "profit": float(financial["profit"]),
@@ -100,6 +147,7 @@ class ExecutiveRepository:
                 "orders": int(business["orders"]),
                 "customers": int(business["customers"]),
                 "aov": float(aov["aov"]),
+                "trends": trends,
             }
 
         finally:
