@@ -3,8 +3,11 @@
 # ----------------------------
 
 backend/.venv/
-backend/__pycache__/
-backend/.pytest_cache/
+
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 *.py[cod]
 *$py.class
@@ -14,6 +17,7 @@ backend/.pytest_cache/
 # ----------------------------
 
 backend/.env
+backend/.env.*
 
 # ----------------------------
 # IDE
@@ -41,3 +45,17 @@ Thumbs.db
 
 .coverage
 htmlcov/
+
+# ----------------------------
+# Build
+# ----------------------------
+
+build/
+dist/
+*.egg-info/
+
+# ----------------------------
+# Jupyter
+# ----------------------------
+
+.ipynb_checkpoints/

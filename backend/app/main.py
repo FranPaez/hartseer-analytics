@@ -4,6 +4,8 @@ from app.core.config import settings
 from app.routes.executive import router as executive_router
 from app.routes.health import router as health_router
 from app.routes.products import router as products_router
+from app.routes.customers import router as customers_router
+from app.routes import marketing
 
 
 app = FastAPI(
@@ -34,4 +36,16 @@ app.include_router(
     products_router,
     prefix="/api/v1",
     tags=["Products"],
+)
+
+app.include_router(
+    customers_router,
+    prefix="/api/v1",
+    tags=["Customers"],
+)
+
+app.include_router(
+    marketing.router,
+    prefix="/api/v1/marketing",
+    tags=["Marketing"],
 )
