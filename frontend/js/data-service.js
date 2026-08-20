@@ -1,83 +1,139 @@
 "use strict";
 
 
-/* -- DATA PATHS --*/
+/* -- API CONFIGURATION --*/
 
-const DATA_PATHS = {
-    sales: "./frontend/data/sales.json",
-    marketingCosts: "./frontend/data/marketing-costs.json"
+const API_BASE_URL = "https://hartseer-analytics-production.up.railway.app/api/v1";
+
+
+/* -- API ENDPOINTS --*/
+
+const API_ENDPOINTS = {
+    executive: `${API_BASE_URL}/executive`,
+    products: `${API_BASE_URL}/products`,
+    customers: `${API_BASE_URL}/customers`,
+    marketing: `${API_BASE_URL}/marketing`
 };
 
 
-/* -- DATA STORE --*/
+/* -- API REQUEST --*/
 
-const dataStore = {
-    sales: [],
-    marketingCosts: [],
-    isLoaded: false
-};
+async function fetchApiData(
+    endpoint,
+    params = {}
+) {
+    const queryParams = new URLSearchParams();
 
+    Object.entries(params).forEach(
+        ([key, value]) => {
+            if (
+                value !== null &&
+                value !== undefined &&
+                value !== ""
+            ) {
+                queryParams.append(
+                    key,
+                    value
+                );
+            }
+        }
+    );
 
-/* -- JSON LOADING --*/
+    const queryString =
+        queryParams.toString();
 
-async function loadJsonFile(path) {
-    const response = await fetch(path);
+    const url =
+        queryString.length > 0
+            ? `${endpoint}?${queryString}`
+            : endpoint;
+
+    const response = await fetch(url);
 
     if (!response.ok) {
         throw new Error(
-            `No se pudo cargar el archivo: ${path}`
+            `No se pudo obtener la información de la API: ${response.status}`
         );
     }
 
-    return response.json();
-}
+    const result = await response.json();
 
-
-/* -- DATA INITIALIZATION --*/
-
-async function loadApplicationData() {
-    if (dataStore.isLoaded) {
-        return dataStore;
-    }
-
-    const [
-        sales,
-        marketingCosts
-    ] = await Promise.all([
-        loadJsonFile(DATA_PATHS.sales),
-        loadJsonFile(DATA_PATHS.marketingCosts)
-    ]);
-
-    if (!Array.isArray(sales)) {
-        throw new TypeError(
-            "sales.json debe contener un array."
+    if (
+        !result ||
+        result.success !== true ||
+        !result.data
+    ) {
+        throw new Error(
+            `La respuesta de la API no tiene el formato esperado: ${endpoint}`
         );
     }
 
-    if (!Array.isArray(marketingCosts)) {
-        throw new TypeError(
-            "marketing-costs.json debe contener un array."
-        );
-    }
-
-    dataStore.sales = sales;
-    dataStore.marketingCosts = marketingCosts;
-    dataStore.isLoaded = true;
-
-    return dataStore;
+    return result.data;
 }
 
 
-/* -- DATA ACCESS --*/
+/* -- EXECUTIVE --*/
 
-function getSalesData() {
-    return dataStore.sales;
+async function getExecutiveData(
+    startDate,
+    endDate
+) {
+    return fetchApiData(
+        API_ENDPOINTS.executive,
+        {
+            start_date: startDate,
+            end_date: endDate
+        }
+    );
 }
 
-function getMarketingCostsData() {
-    return dataStore.marketingCosts;
+
+/* -- PRODUCTS --*/
+
+async function getProductsData(
+    startDate,
+    endDate,
+    groupBy
+) {
+    return fetchApiData(
+        API_ENDPOINTS.products,
+        {
+            start_date: startDate,
+            end_date: endDate,
+            group_by: groupBy
+        }
+    );
 }
 
-function isApplicationDataLoaded() {
-    return dataStore.isLoaded;
+
+/* -- CUSTOMERS --*/
+
+async function getCustomersData(
+    startDate,
+    endDate
+) {
+    return fetchApiData(
+        API_ENDPOINTS.customers,
+        {
+            start_date: startDate,
+            end_date: endDate
+        }
+    );
+}
+
+
+/* -- MARKETING --*/
+
+async function getMarketingData(
+    startDate,
+    endDate,
+    channel = "ALL"
+) {
+    return fetchApiData(
+        API_ENDPOINTS.marketing,
+        {
+            start_date: startDate,
+            end_date: endDate,
+            channel
+        }
+    );
 }

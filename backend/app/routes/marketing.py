@@ -7,7 +7,7 @@ from app.controllers.marketing import marketing_controller
 router = APIRouter()
 
 
-@router.get("")
+@router.get("/marketing")
 def get_dashboard(
     start_date: date = Query(...),
     end_date: date = Query(...),

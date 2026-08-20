@@ -22,10 +22,27 @@ class CustomersRepository:
             cursor.execute(
                 """
                 SELECT
-                    COUNT(id_cliente) AS new_customers
-                FROM cliente;
-                """
-            )
+                    COUNT(*) AS new_customers
+
+                FROM (
+                    SELECT
+                        id_cliente,
+                        MIN(fecha) AS first_purchase_date
+
+                    FROM compra
+
+                    GROUP BY
+                        id_cliente
+                ) AS first_purchases
+
+                WHERE first_purchase_date >= %s
+                AND first_purchase_date < DATE_ADD(
+                    %s,
+                    INTERVAL 1 DAY
+                );
+                """,
+                (start_date, end_date),
+                )
 
             new_customers = cursor.fetchone()
 
@@ -131,12 +148,34 @@ class CustomersRepository:
             top_revenue = max(
                 financial,
                 key=lambda row: row["revenue"],
-            )
+            ) if financial else {
+                "customer": "No data",
+                "revenue": 0,
+                "profit": 0,
+            }
 
             top_profit = max(
                 financial,
                 key=lambda row: row["profit"],
-            )
+            ) if financial else {
+                "customer": "No data",
+                "revenue": 0,
+                "profit": 0,
+            }
+
+            # Customer Rankings
+
+            revenue_ranking = sorted(
+                financial,
+                key=lambda row: row["revenue"],
+                reverse=True,
+            )[:5]
+
+            profit_ranking = sorted(
+                financial,
+                key=lambda row: row["profit"],
+                reverse=True,
+            )[:5]
 
             return {
                 "new_customers": new_customers["new_customers"],
@@ -148,6 +187,8 @@ class CustomersRepository:
                 ),
                 "top_revenue": top_revenue,
                 "top_profit": top_profit,
+                "revenue_ranking": revenue_ranking,
+                "profit_ranking": profit_ranking,
             }
 
         finally:

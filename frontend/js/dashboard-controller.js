@@ -9,6 +9,14 @@ let customersDashboardCharts = [];
 let marketingDashboardCharts = [];
 
 
+/* -- DATA DATE CONFIGURATION --*/
+
+const DASHBOARD_DATA_RANGE = {
+    minimumDate: "2019-03-15",
+    maximumDate: "2026-06-26"
+};
+
+
 /* -- VALUE FORMATTERS --*/
 
 function formatDashboardCurrency(value) {
@@ -29,6 +37,7 @@ function formatDashboardCurrency(value) {
     ).format(value);
 }
 
+
 function formatDashboardInteger(value) {
     if (
         value === null ||
@@ -45,6 +54,7 @@ function formatDashboardInteger(value) {
     ).format(value);
 }
 
+
 function formatDashboardPercentage(value) {
     if (
         value === null ||
@@ -56,6 +66,7 @@ function formatDashboardPercentage(value) {
     return `${Number(value).toFixed(2)}%`;
 }
 
+
 function formatDashboardRoas(value) {
     if (
         value === null ||
@@ -66,6 +77,7 @@ function formatDashboardRoas(value) {
 
     return `${Number(value).toFixed(2)}x`;
 }
+
 
 function formatDashboardChange(
     value,
@@ -86,6 +98,83 @@ function formatDashboardChange(
 
 
 /* -- DATE HELPERS --*/
+
+function getDashboardDateRange() {
+    return {
+        minimumDate:
+            DASHBOARD_DATA_RANGE.minimumDate,
+
+        maximumDate:
+            DASHBOARD_DATA_RANGE.maximumDate
+    };
+}
+
+
+function getLastAvailableMonthRange() {
+    const {
+        maximumDate
+    } = getDashboardDateRange();
+
+    const maximumDateObject =
+        parseDataDate(
+            maximumDate
+        );
+
+    if (!maximumDateObject) {
+        return null;
+    }
+
+    const startDate =
+        new Date(
+            maximumDateObject
+        );
+
+    startDate.setDate(1);
+
+    return {
+        startDate:
+            formatDateForInput(
+                startDate
+            ),
+
+        endDate:
+            maximumDate
+    };
+}
+
+
+function configureDateInputRange(
+    startInput,
+    endInput,
+    startDate,
+    endDate
+) {
+    if (
+        !startInput ||
+        !endInput
+    ) {
+        return;
+    }
+
+    startInput.min =
+        DASHBOARD_DATA_RANGE.minimumDate;
+
+    startInput.max =
+        DASHBOARD_DATA_RANGE.maximumDate;
+
+    endInput.min =
+        DASHBOARD_DATA_RANGE.minimumDate;
+
+    endInput.max =
+        DASHBOARD_DATA_RANGE.maximumDate;
+
+    startInput.value =
+        startDate;
+
+    endInput.value =
+        endDate;
+}
+
 
 function getDatasetDateRange(records) {
     const dates = records
@@ -109,6 +198,7 @@ function getDatasetDateRange(records) {
     };
 }
 
+
 function clampDateToRange(
     date,
     minimumDate,
@@ -128,6 +218,7 @@ function clampDateToRange(
 
     return date;
 }
+
 
 function synchronizeDateInputLimits(
     startInput,
@@ -154,6 +245,7 @@ function synchronizeDateInputLimits(
         datasetMinimum;
 }
 
+
 function formatMonthLabel(monthKey) {
     const [year, month] = monthKey
         .split("-")
@@ -174,6 +266,7 @@ function formatMonthLabel(monthKey) {
     ).format(date);
 }
 
+
 function normalizePeriodEnd(date) {
     const normalizedDate = new Date(date);
 
@@ -186,6 +279,7 @@ function normalizePeriodEnd(date) {
 
     return normalizedDate;
 }
+
 
 function configureMonthlyDateFilter(
     records,
@@ -285,6 +379,7 @@ function configureMonthlyDateFilter(
         previousPeriod: periods.previous
     };
 }
+
 
 function getSelectedDatePeriods(
     records,
@@ -394,6 +489,108 @@ function getSelectedDatePeriods(
     };
 }
 
+/* -- TREND COMPARISON PERIODS --*/
+
+const MAX_TREND_COMPARISON_YEARS = 1;
+
+
+function isTrendPeriodWithinLimit(
+    startDate,
+    endDate
+) {
+    const maximumEndDate =
+        new Date(startDate);
+
+    maximumEndDate.setFullYear(
+        maximumEndDate.getFullYear() +
+        MAX_TREND_COMPARISON_YEARS
+    );
+
+    maximumEndDate.setDate(
+        maximumEndDate.getDate() - 1
+    );
+
+    return endDate <= maximumEndDate;
+}
+
+function getTrendComparisonPeriods(
+    startDate,
+    endDate
+) {
+    if (
+        isTrendPeriodWithinLimit(
+            startDate,
+            endDate
+        )
+    ) {
+        const previousPeriod =
+            getPreviousPeriodRange(
+                startDate,
+                endDate
+            );
+
+        if (!previousPeriod) {
+            return null;
+        }
+
+        return {
+            enabled: true,
+
+            currentPeriod: {
+                startDate,
+                endDate
+            },
+
+            previousPeriod
+        };
+    }
+
+    return {
+        enabled: false,
+
+        currentPeriod: {
+            startDate,
+            endDate
+        },
+
+        previousPeriod: null
+    };
+}
+
+
+function updateDashboardTrendLabels(
+    dashboardName,
+    metricNames,
+    label
+) {
+    metricNames.forEach(
+        (metricName) => {
+            const trendElement =
+                document.getElementById(
+                    `${dashboardName}-${metricName}-trend`
+                );
+
+            if (!trendElement) {
+                return;
+            }
+
+            const comparisonContainer =
+                trendElement.closest(
+                    ".kpi-card__comparison"
+                );
+
+            const labelElement =
+                comparisonContainer?.querySelector(
+                    ".kpi-card__comparison-label"
+                );
+
+            if (labelElement) {
+                labelElement.textContent =
+                    label;
+            }
+        }
+    );
+}
 
 /* -- TREND HELPERS --*/
 
@@ -411,6 +608,7 @@ function getTrendIconPath(direction) {
 
     return icons[direction] ?? icons.neutral;
 }
+
 
 function updateDashboardTrend(
     dashboardName,
@@ -462,6 +660,59 @@ function updateDashboardTrend(
         );
 }
 
+function clearDashboardTrend(
+    dashboardName,
+    metricName
+) {
+    const trendElement = document.getElementById(
+        `${dashboardName}-${metricName}-trend`
+    );
+
+    const iconElement = document.getElementById(
+        `${dashboardName}-${metricName}-trend-icon`
+    );
+
+    const valueElement = document.getElementById(
+        `${dashboardName}-${metricName}-change`
+    );
+
+    if (
+        !trendElement ||
+        !iconElement ||
+        !valueElement
+    ) {
+        return;
+    }
+
+    trendElement.classList.remove(
+        "kpi-card__change--positive",
+        "kpi-card__change--negative"
+    );
+
+    trendElement.classList.add(
+        "kpi-card__change--neutral"
+    );
+
+    iconElement.src =
+        getTrendIconPath("neutral");
+
+    valueElement.textContent = "—";
+}
+
+function clearDashboardTrends(
+    dashboardName,
+    metricNames
+) {
+    metricNames.forEach(
+        (metricName) => {
+            clearDashboardTrend(
+                dashboardName,
+                metricName
+            );
+        }
+    );
+}
+
 function comparePointValues(
     currentValue,
     previousValue
@@ -501,23 +752,24 @@ function destroyExecutiveCharts() {
     executiveCharts = [];
 }
 
-function renderExecutiveCharts(records) {
+
+function renderExecutiveCharts(
+    trends
+) {
     destroyExecutiveCharts();
 
-    const monthlyData = aggregateByMonth(
-        records
-    );
-
-    const labels = monthlyData.map((item) => {
-        return formatMonthLabel(item.month);
+    const labels = trends.map((item) => {
+        return formatMonthLabel(
+            item.period
+        );
     });
 
-    const revenueData = monthlyData.map((item) => {
-        return item.revenue;
+    const revenueData = trends.map((item) => {
+        return Number(item.revenue);
     });
 
-    const profitData = monthlyData.map((item) => {
-        return item.profit;
+    const profitData = trends.map((item) => {
+        return Number(item.profit);
     });
 
     const revenueChart = createLineChart(
@@ -543,18 +795,24 @@ function renderExecutiveCharts(records) {
     );
 
     if (revenueChart) {
-        executiveCharts.push(revenueChart);
+        executiveCharts.push(
+            revenueChart
+        );
     }
 
     if (profitChart) {
-        executiveCharts.push(profitChart);
+        executiveCharts.push(
+            profitChart
+        );
     }
 }
 
 
 /* -- EXECUTIVE KPI VALUES --*/
 
-function updateExecutiveKpiValues(metrics) {
+function updateExecutiveKpiValues(
+    metrics
+) {
     updateElementText(
         "executive-revenue-value",
         formatDashboardCurrency(
@@ -601,7 +859,9 @@ function updateExecutiveKpiValues(metrics) {
 
 /* -- EXECUTIVE KPI TRENDS --*/
 
-function updateExecutiveTrends(comparisons) {
+function updateExecutiveTrends(
+    comparisons
+) {
     updateDashboardTrend(
         "executive",
         "revenue",
@@ -641,124 +901,236 @@ function updateExecutiveTrends(comparisons) {
 }
 
 
-/* -- DEFAULT EXECUTIVE COMPARISON --*/
+/* -- EXECUTIVE COMPARISON --*/
 
-function getExecutiveDefaultComparison(records) {
-    const periods = getDefaultComparisonPeriods(
-        records
-    );
+function compareExecutiveMetrics(
+    currentMetrics,
+    previousMetrics
+) {
+    return {
+        revenue: compareMetricValues(
+            currentMetrics.revenue,
+            previousMetrics.revenue
+        ),
 
-    if (!periods) {
-        return null;
-    }
+        profit: compareMetricValues(
+            currentMetrics.profit,
+            previousMetrics.profit
+        ),
 
-    const currentRecords = filterRecordsByDate(
-        records,
-        periods.current.startDate,
-        periods.current.endDate
-    );
+        margin: comparePointValues(
+            currentMetrics.margin,
+            previousMetrics.margin
+        ),
 
-    const previousRecords = filterRecordsByDate(
-        records,
-        periods.previous.startDate,
-        periods.previous.endDate
-    );
+        orders: compareMetricValues(
+            currentMetrics.orders,
+            previousMetrics.orders
+        ),
 
-    return compareCoreMetrics(
-        currentRecords,
-        previousRecords
-    );
+        aov: compareMetricValues(
+            currentMetrics.aov,
+            previousMetrics.aov
+        ),
+
+        customers: compareMetricValues(
+            currentMetrics.customers,
+            previousMetrics.customers
+        )
+    };
 }
 
 
 /* -- EXECUTIVE DASHBOARD RENDERING --*/
 
 function renderExecutiveDashboard(
-    currentRecords,
-    previousRecords = null
+    currentData,
+    previousData,
+    trendEnabled,
+    comparisonLabel
 ) {
-    const metrics = calculateCoreMetrics(
-        currentRecords
+    updateExecutiveKpiValues(
+        currentData
     );
 
-    updateExecutiveKpiValues(metrics);
-    renderExecutiveCharts(currentRecords);
+    renderExecutiveCharts(
+        currentData.trends
+    );
 
-    const comparison = previousRecords
-        ? compareCoreMetrics(
-            currentRecords,
-            previousRecords
-        )
-        : getExecutiveDefaultComparison(
-            getSalesData()
+    if (trendEnabled) {
+        const comparison =
+            compareExecutiveMetrics(
+                currentData,
+                previousData
+            );
+
+        updateExecutiveTrends(
+            comparison
         );
-
-    if (!comparison) {
-        return;
+    } else {
+        clearDashboardTrends(
+            "executive",
+            [
+                "revenue",
+                "profit",
+                "margin",
+                "orders",
+                "aov",
+                "customers"
+            ]
+        );
     }
 
-    updateExecutiveTrends(
-        comparison.comparisons
+    updateDashboardTrendLabels(
+        "executive",
+        [
+            "revenue",
+            "profit",
+            "margin",
+            "orders",
+            "aov",
+            "customers"
+        ],
+        comparisonLabel
     );
 }
 
 
 /* -- EXECUTIVE DATE FILTER --*/
 
-function applyExecutiveDateFilter() {
-    const periods = getSelectedDatePeriods(
-        getSalesData(),
-        "executive-start-date",
-        "executive-end-date"
-    );
+async function applyExecutiveDateFilter() {
+    const startInput =
+        document.getElementById(
+            "executive-start-date"
+        );
 
-    if (!periods) {
-        return;
-    }
-
-    renderExecutiveDashboard(
-        periods.currentRecords,
-        periods.previousRecords
-    );
-}
-
-function configureExecutiveDateFilter(records) {
-    const startInput = document.getElementById(
-        "executive-start-date"
-    );
-
-    const endInput = document.getElementById(
-        "executive-end-date"
-    );
-
-    const datasetRange = getDatasetDateRange(
-        records
-    );
+    const endInput =
+        document.getElementById(
+            "executive-end-date"
+        );
 
     if (
         !startInput ||
         !endInput ||
-        !datasetRange
+        !startInput.value ||
+        !endInput.value
     ) {
         return;
     }
 
-    const minimumDate = formatDateForInput(
-        datasetRange.startDate
+    let startDate = parseDataDate(
+        startInput.value
     );
 
-    const maximumDate = formatDateForInput(
-        datasetRange.endDate
+    let endDate = parseDataDate(
+        endInput.value
     );
 
-    startInput.min = minimumDate;
-    startInput.max = maximumDate;
+    if (
+        !startDate ||
+        !endDate
+    ) {
+        return;
+    }
 
-    endInput.min = minimumDate;
-    endInput.max = maximumDate;
+    if (startDate > endDate) {
+        endDate = new Date(startDate);
 
-    startInput.value = minimumDate;
-    endInput.value = maximumDate;
+        endInput.value =
+            formatDateForInput(
+                endDate
+            );
+    }
+
+    const trendPeriods =
+        getTrendComparisonPeriods(
+            startDate,
+            endDate
+        );
+
+    if (!trendPeriods) {
+        return;
+    }
+
+    const trendEnabled =
+        trendPeriods.enabled;
+
+    const comparisonLabel =
+        trendEnabled
+            ? "vs previous period"
+            : "vs previous 12 months";
+
+    try {
+        const currentData =
+            await getExecutiveData(
+                formatDateForInput(
+                    startDate
+                ),
+                formatDateForInput(
+                    endDate
+                )
+            );
+
+        let previousData = null;
+
+        if (trendEnabled) {
+            previousData =
+                await getExecutiveData(
+                    formatDateForInput(
+                        trendPeriods.previousPeriod.startDate
+                    ),
+                    formatDateForInput(
+                        trendPeriods.previousPeriod.endDate
+                    )
+                );
+        }
+
+        renderExecutiveDashboard(
+            currentData,
+            previousData,
+            trendEnabled,
+            comparisonLabel
+        );
+
+    } catch (error) {
+        console.error(
+            "Error al cargar Executive:",
+            error
+        );
+    }
+}
+
+/* -- EXECUTIVE DATE FILTER CONFIGURATION --*/
+
+function configureExecutiveDateFilter() {
+    const startInput =
+        document.getElementById(
+            "executive-start-date"
+        );
+
+    const endInput =
+        document.getElementById(
+            "executive-end-date"
+        );
+
+    if (
+        !startInput ||
+        !endInput
+    ) {
+        return;
+    }
+
+    const {
+        minimumDate,
+        maximumDate
+    } = getDashboardDateRange();
+
+    configureDateInputRange(
+        startInput,
+        endInput,
+        minimumDate,
+        maximumDate
+    );
 
     startInput.addEventListener(
         "change",
@@ -774,16 +1146,38 @@ function configureExecutiveDateFilter(records) {
 
 /* -- EXECUTIVE INITIALIZATION --*/
 
-function initExecutiveDashboard() {
-    const salesRecords = getSalesData();
+async function initExecutiveDashboard() {
+    const startInput =
+        document.getElementById(
+            "executive-start-date"
+        );
 
-    renderExecutiveDashboard(
-        salesRecords
-    );
+    const endInput =
+        document.getElementById(
+            "executive-end-date"
+        );
 
-    configureExecutiveDateFilter(
-        salesRecords
-    );
+    if (
+        !startInput ||
+        !endInput
+    ) {
+        return;
+    }
+
+    configureExecutiveDateFilter();
+
+    const {
+        minimumDate,
+        maximumDate
+    } = getDashboardDateRange();
+
+    startInput.value =
+        minimumDate;
+
+    endInput.value =
+        maximumDate;
+
+    await applyExecutiveDateFilter();
 }
 
 
@@ -821,66 +1215,24 @@ function destroyProductsDashboardCharts() {
 }
 
 
-/* -- PRODUCTS DATA PREPARATION --*/
-
-function getProductsDimensionData(
-    records,
-    dimension
-) {
-    const dimensionConfig =
-        PRODUCT_DIMENSIONS[dimension] ??
-        PRODUCT_DIMENSIONS.category;
-
-    const analysisRecords =
-        dimension === "brand"
-            ? records.filter((record) => {
-                return (
-                    record.brand_name !==
-                    "No aplica"
-                );
-            })
-            : records;
-
-    return {
-        dimensionConfig,
-
-        results: aggregateByDimension(
-            analysisRecords,
-            dimensionConfig.field
-        )
-    };
-}
-
-
 /* -- PRODUCTS KPI UPDATE --*/
 
 function updateProductsKpiCards(
-    results,
+    data,
     dimension,
     dimensionConfig
 ) {
     const topRevenue =
-        sortMetricResults(
-            results,
-            "revenue"
-        )[0] ?? null;
+        data.top_revenue ?? null;
 
     const topProfit =
-        sortMetricResults(
-            results,
-            "profit"
-        )[0] ?? null;
+        data.top_profit ?? null;
 
-    const thirdMetricName =
-        dimension === "product"
-            ? "unitsSold"
-            : "margin";
+    const topMargin =
+        data.top_margin ?? null;
 
-    const thirdResult =
-        sortMetricResults(
-            results,
-            thirdMetricName
-        )[0] ?? null;
+    const topSales =
+        data.top_sales ?? null;
 
     const cards = [
         {
@@ -924,16 +1276,23 @@ function updateProductsKpiCards(
                     : `Top Margin ${dimensionConfig.singular}`,
 
             value:
-                thirdResult?.dimension ??
-                "No data",
+                dimension === "product"
+                    ? (
+                        topSales?.product ??
+                        "No data"
+                    )
+                    : (
+                        topMargin?.dimension ??
+                        "No data"
+                    ),
 
             metric:
                 dimension === "product"
                     ? `${formatDashboardInteger(
-                        thirdResult?.unitsSold ?? 0
+                        topSales?.units_sold ?? 0
                     )} units`
                     : formatDashboardPercentage(
-                        thirdResult?.margin ?? 0
+                        topMargin?.margin ?? 0
                     ),
 
             label:
@@ -972,11 +1331,16 @@ function updateProductsKpiCards(
 /* -- PRODUCTS CHARTS --*/
 
 function renderProductsDashboardCharts(
-    results,
+    financial,
     dimension,
     dimensionConfig
 ) {
     destroyProductsDashboardCharts();
+
+    const results =
+        Array.isArray(financial)
+            ? financial
+            : [];
 
     const revenueResults =
         sortMetricResults(
@@ -992,7 +1356,7 @@ function renderProductsDashboardCharts(
 
     const thirdMetricName =
         dimension === "product"
-            ? "unitsSold"
+            ? "units_sold"
             : "margin";
 
     const thirdResults =
@@ -1110,31 +1474,22 @@ function renderProductsDashboardCharts(
 
 /* -- PRODUCTS DASHBOARD RENDERING --*/
 
-function renderProductsDashboard(records) {
-    const dimensionSelect = document.getElementById(
-        "product-dimension"
-    );
-
-    const dimension =
-        dimensionSelect?.value ??
-        "category";
-
-    const {
-        dimensionConfig,
-        results
-    } = getProductsDimensionData(
-        records,
-        dimension
-    );
+function renderProductsDashboard(
+    data,
+    dimension
+) {
+    const dimensionConfig =
+        PRODUCT_DIMENSIONS[dimension] ??
+        PRODUCT_DIMENSIONS.category;
 
     updateProductsKpiCards(
-        results,
+        data,
         dimension,
         dimensionConfig
     );
 
     renderProductsDashboardCharts(
-        results,
+        data.financial ?? [],
         dimension,
         dimensionConfig
     );
@@ -1143,39 +1498,149 @@ function renderProductsDashboard(records) {
 
 /* -- PRODUCTS FILTERS --*/
 
-function applyProductsFilters() {
-    const periods = getSelectedDatePeriods(
-        getSalesData(),
-        "products-start-date",
-        "products-end-date"
-    );
+async function applyProductsFilters() {
+    const startInput =
+        document.getElementById(
+            "products-start-date"
+        );
 
-    if (!periods) {
+    const endInput =
+        document.getElementById(
+            "products-end-date"
+        );
+
+    const dimensionSelect =
+        document.getElementById(
+            "product-dimension"
+        );
+
+    if (
+        !startInput ||
+        !endInput ||
+        !startInput.value ||
+        !endInput.value
+    ) {
         return;
     }
 
-    renderProductsDashboard(
-        periods.currentRecords
+    const dimension =
+        dimensionSelect?.value ??
+        "category";
+
+    let startDate =
+        parseDataDate(
+            startInput.value
+        );
+
+    let endDate =
+        parseDataDate(
+            endInput.value
+        );
+
+    if (
+        !startDate ||
+        !endDate
+    ) {
+        return;
+    }
+
+    if (startDate > endDate) {
+        endDate = new Date(
+            startDate
+        );
+
+        endInput.value =
+            formatDateForInput(
+                endDate
+            );
+    }
+
+    try {
+        const data =
+            await getProductsData(
+                formatDateForInput(
+                    startDate
+                ),
+                formatDateForInput(
+                    endDate
+                ),
+                dimension
+            );
+
+        renderProductsDashboard(
+            data,
+            dimension
+        );
+
+    } catch (error) {
+        console.error(
+            "Error al cargar Products:",
+            error
+        );
+    }
+}
+
+
+/* -- PRODUCTS DATE FILTER CONFIGURATION --*/
+
+function configureProductsDateFilter() {
+    const startInput =
+        document.getElementById(
+            "products-start-date"
+        );
+
+    const endInput =
+        document.getElementById(
+            "products-end-date"
+        );
+
+    if (
+        !startInput ||
+        !endInput
+    ) {
+        return;
+    }
+
+    const {
+        minimumDate,
+        maximumDate
+    } = getDashboardDateRange();
+
+    const lastAvailableMonth =
+        getLastAvailableMonthRange();
+
+    if (!lastAvailableMonth) {
+        return;
+    }
+
+    configureDateInputRange(
+        startInput,
+        endInput,
+        lastAvailableMonth.startDate,
+        lastAvailableMonth.endDate
+    );
+
+    startInput.addEventListener(
+        "change",
+        applyProductsFilters
+    );
+
+    endInput.addEventListener(
+        "change",
+        applyProductsFilters
     );
 }
 
 
 /* -- PRODUCTS INITIALIZATION --*/
 
-function initProductsDashboard() {
-    const salesRecords = getSalesData();
-
-    const defaultData =
-        configureMonthlyDateFilter(
-            salesRecords,
-            "products-start-date",
-            "products-end-date",
-            applyProductsFilters
+async function initProductsDashboard() {
+    const dimensionSelect =
+        document.getElementById(
+            "product-dimension"
         );
 
-    const dimensionSelect = document.getElementById(
-        "product-dimension"
-    );
+    configureProductsDateFilter();
 
     if (dimensionSelect) {
         dimensionSelect.addEventListener(
@@ -1184,10 +1649,7 @@ function initProductsDashboard() {
         );
     }
 
-    renderProductsDashboard(
-        defaultData?.currentRecords ??
-        salesRecords
-    );
+    await applyProductsFilters();
 }
 
 
@@ -1202,137 +1664,93 @@ function destroyCustomersDashboardCharts() {
 }
 
 
-/* -- CUSTOMERS METRICS --*/
-
-function calculateCustomerDashboardMetrics(
-    periodRecords,
-    allRecords,
-    period
-) {
-    const customerResults =
-        aggregateCustomers(periodRecords);
-
-    const topRevenue =
-        [...customerResults].sort(
-            (first, second) => {
-                return (
-                    second.revenue -
-                    first.revenue
-                );
-            }
-        )[0] ?? null;
-
-    const topProfit =
-        [...customerResults].sort(
-            (first, second) => {
-                return (
-                    second.profit -
-                    first.profit
-                );
-            }
-        )[0] ?? null;
-
-    return {
-        newCustomers: calculateNewCustomers(
-            allRecords,
-            period.startDate,
-            normalizePeriodEnd(
-                period.endDate
-            )
-        ),
-
-        returningCustomers:
-            calculateReturningCustomers(
-                periodRecords
-            ),
-
-        oneTimeCustomers:
-            calculateOneTimeCustomers(
-                periodRecords
-            ),
-
-        recurrenceRate:
-            calculateRecurrenceRate(
-                periodRecords
-            ),
-
-        topRevenue,
-        topProfit,
-        customerResults
-    };
-}
-
-
 /* -- CUSTOMERS KPI UPDATE --*/
 
 function updateCustomersDashboardKpis(
-    currentMetrics,
-    previousMetrics
+    currentData,
+    previousData,
+    trendEnabled
 ) {
+    const current =
+        currentData ?? {};
+
     updateElementText(
         "customers-new-value",
         formatDashboardInteger(
-            currentMetrics.newCustomers
+            current.new_customers ?? 0
         )
     );
 
     updateElementText(
         "customers-returning-value",
         formatDashboardInteger(
-            currentMetrics.returningCustomers
+            current.returning_customers ?? 0
         )
     );
 
     updateElementText(
         "customers-one-time-value",
         formatDashboardInteger(
-            currentMetrics.oneTimeCustomers
+            current.total_orders ?? 0
         )
     );
 
     updateElementText(
         "customers-top-revenue-name",
-        currentMetrics.topRevenue
-            ?.customerName ??
-            "No data"
+        current.top_revenue?.customer ??
+        "No data"
     );
 
     updateElementText(
         "customers-top-revenue-metric",
         formatDashboardCurrency(
-            currentMetrics.topRevenue
-                ?.revenue ?? 0
+            current.top_revenue?.revenue ?? 0
         )
     );
 
     updateElementText(
         "customers-top-profit-name",
-        currentMetrics.topProfit
-            ?.customerName ??
-            "No data"
+        current.top_profit?.customer ??
+        "No data"
     );
 
     updateElementText(
         "customers-top-profit-metric",
         formatDashboardCurrency(
-            currentMetrics.topProfit
-                ?.profit ?? 0
+            current.top_profit?.profit ?? 0
         )
     );
 
     updateElementText(
         "customers-recurrence-value",
         formatDashboardPercentage(
-            currentMetrics.recurrenceRate
+            current.recurrence_rate ?? 0
         )
     );
+
+    if (!trendEnabled) {
+        clearDashboardTrends(
+            "customers",
+            [
+                "new",
+                "returning",
+                "one-time",
+                "recurrence"
+            ]
+        );
+
+        return;
+    }
+
+    const previous =
+        previousData ?? {};
 
     updateDashboardTrend(
         "customers",
         "new",
         compareMetricValues(
-            currentMetrics.newCustomers,
-            previousMetrics.newCustomers
+            current.new_customers ?? 0,
+            previous.new_customers ?? 0
         )
     );
 
@@ -1340,8 +1758,8 @@ function updateCustomersDashboardKpis(
         "customers",
         "returning",
         compareMetricValues(
-            currentMetrics.returningCustomers,
-            previousMetrics.returningCustomers
+            current.returning_customers ?? 0,
+            previous.returning_customers ?? 0
         )
     );
 
@@ -1349,8 +1767,8 @@ function updateCustomersDashboardKpis(
         "customers",
         "one-time",
         compareMetricValues(
-            currentMetrics.oneTimeCustomers,
-            previousMetrics.oneTimeCustomers
+            current.total_orders ?? 0,
+            previous.total_orders ?? 0
         )
     );
 
@@ -1358,8 +1776,8 @@ function updateCustomersDashboardKpis(
         "customers",
         "recurrence",
         comparePointValues(
-            currentMetrics.recurrenceRate,
-            previousMetrics.recurrenceRate
+            current.recurrence_rate ?? 0,
+            previous.recurrence_rate ?? 0
         ),
         " pp"
     );
@@ -1368,28 +1786,24 @@ function updateCustomersDashboardKpis(
 
 /* -- CUSTOMERS CHARTS --*/
 
-function renderCustomersDashboardCharts(metrics) {
+function renderCustomersDashboardCharts(
+    data
+) {
     destroyCustomersDashboardCharts();
 
     const revenueRanking =
-        [...metrics.customerResults]
-            .sort((first, second) => {
-                return (
-                    second.revenue -
-                    first.revenue
-                );
-            })
-            .slice(0, 5);
+        Array.isArray(
+            data.revenue_ranking
+        )
+            ? data.revenue_ranking
+            : [];
 
     const profitRanking =
-        [...metrics.customerResults]
-            .sort((first, second) => {
-                return (
-                    second.profit -
-                    first.profit
-                );
-            })
-            .slice(0, 5);
+        Array.isArray(
+            data.profit_ranking
+        )
+            ? data.profit_ranking
+            : [];
 
     const charts = [
         createHorizontalBarChart(
@@ -1398,7 +1812,7 @@ function renderCustomersDashboardCharts(metrics) {
                 label: "Revenue",
 
                 labels: revenueRanking.map(
-                    (item) => item.customerName
+                    (item) => item.customer
                 ),
 
                 data: revenueRanking.map(
@@ -1416,7 +1830,7 @@ function renderCustomersDashboardCharts(metrics) {
                 label: "Profit",
 
                 labels: profitRanking.map(
-                    (item) => item.customerName
+                    (item) => item.customer
                 ),
 
                 data: profitRanking.map(
@@ -1432,13 +1846,13 @@ function renderCustomersDashboardCharts(metrics) {
             "customers-distribution-chart",
             {
                 labels: [
-                    "One-time Customers",
+                    "New Customers",
                     "Returning Customers"
                 ],
 
                 data: [
-                    metrics.oneTimeCustomers,
-                    metrics.returningCustomers
+                    data.new_customers ?? 0,
+                    data.returning_customers ?? 0
                 ],
 
                 colors: [
@@ -1459,84 +1873,189 @@ function renderCustomersDashboardCharts(metrics) {
 
 /* -- CUSTOMERS DASHBOARD RENDERING --*/
 
-function renderCustomersDashboard(
-    currentRecords,
-    previousRecords,
-    currentPeriod,
-    previousPeriod
+async function renderCustomersDashboard(
+    startDate,
+    endDate
 ) {
-    const allSalesRecords = getSalesData();
-
-    const currentMetrics =
-        calculateCustomerDashboardMetrics(
-            currentRecords,
-            allSalesRecords,
-            currentPeriod
+    const trendPeriods =
+        getTrendComparisonPeriods(
+            startDate,
+            endDate
         );
 
-    const previousMetrics =
-        calculateCustomerDashboardMetrics(
-            previousRecords,
-            allSalesRecords,
-            previousPeriod
-        );
-
-    updateCustomersDashboardKpis(
-        currentMetrics,
-        previousMetrics
-    );
-
-    renderCustomersDashboardCharts(
-        currentMetrics
-    );
-}
-
-
-/* -- CUSTOMERS FILTERS --*/
-
-function applyCustomersDateFilter() {
-    const periods = getSelectedDatePeriods(
-        getSalesData(),
-        "customers-start-date",
-        "customers-end-date"
-    );
-
-    if (!periods) {
+    if (!trendPeriods) {
         return;
     }
 
-    renderCustomersDashboard(
-        periods.currentRecords,
-        periods.previousRecords,
-        periods.currentPeriod,
-        periods.previousPeriod
+    const currentData =
+        await getCustomersData(
+            formatDateForInput(startDate),
+            formatDateForInput(endDate)
+        );
+
+    const current =
+        currentData?.data ??
+        currentData ??
+        {};
+
+    let comparisonPrevious = null;
+
+    if (trendPeriods.enabled) {
+        const previousData =
+            await getCustomersData(
+                formatDateForInput(
+                    trendPeriods.previousPeriod.startDate
+                ),
+                formatDateForInput(
+                    trendPeriods.previousPeriod.endDate
+                )
+            );
+
+        comparisonPrevious =
+            previousData?.data ??
+            previousData ??
+            {};
+    }
+
+    updateCustomersDashboardKpis(
+        current,
+        comparisonPrevious,
+        trendPeriods.enabled
+    );
+
+    renderCustomersDashboardCharts(
+        current
+    );
+
+    updateDashboardTrendLabels(
+        "customers",
+        [
+            "new",
+            "returning",
+            "one-time",
+            "recurrence"
+        ],
+        trendPeriods.enabled
+            ? "vs previous period"
+            : "vs previous 12 months"
+    );
+}
+
+/* -- CUSTOMERS FILTERS --*/
+
+async function applyCustomersDateFilter() {
+    const startInput =
+        document.getElementById(
+            "customers-start-date"
+        );
+
+    const endInput =
+        document.getElementById(
+            "customers-end-date"
+        );
+
+    if (
+        !startInput ||
+        !endInput ||
+        !startInput.value ||
+        !endInput.value
+    ) {
+        return;
+    }
+
+    const startDate =
+        parseDataDate(
+            startInput.value
+        );
+
+    const endDate =
+        parseDataDate(
+            endInput.value
+        );
+
+    if (
+        !startDate ||
+        !endDate
+    ) {
+        return;
+    }
+
+    if (startDate > endDate) {
+        endInput.value =
+            formatDateForInput(
+                startDate
+            );
+
+        return;
+    }
+
+    try {
+        await renderCustomersDashboard(
+            startDate,
+            endDate
+        );
+
+    } catch (error) {
+        console.error(
+            "Error al cargar Customers:",
+            error
+        );
+    }
+}
+
+
+/* -- CUSTOMERS DATE FILTER CONFIGURATION --*/
+
+function configureCustomersDateFilter() {
+    const startInput =
+        document.getElementById(
+            "customers-start-date"
+        );
+
+    const endInput =
+        document.getElementById(
+            "customers-end-date"
+        );
+
+    if (
+        !startInput ||
+        !endInput
+    ) {
+        return;
+    }
+
+    const lastAvailableMonth =
+        getLastAvailableMonthRange();
+
+    if (!lastAvailableMonth) {
+        return;
+    }
+
+    configureDateInputRange(
+        startInput,
+        endInput,
+        lastAvailableMonth.startDate,
+        lastAvailableMonth.endDate
+    );
+
+    startInput.addEventListener(
+        "change",
+        applyCustomersDateFilter
+    );
+
+    endInput.addEventListener(
+        "change",
+        applyCustomersDateFilter
     );
 }
 
 
 /* -- CUSTOMERS INITIALIZATION --*/
 
-function initCustomersDashboard() {
-    const salesRecords = getSalesData();
+async function initCustomersDashboard() {
+    configureCustomersDateFilter();
 
-    const defaultData =
-        configureMonthlyDateFilter(
-            salesRecords,
-            "customers-start-date",
-            "customers-end-date",
-            applyCustomersDateFilter
-        );
-
-    if (!defaultData) {
-        return;
-    }
-
-    renderCustomersDashboard(
-        defaultData.currentRecords,
-        defaultData.previousRecords,
-        defaultData.currentPeriod,
-        defaultData.previousPeriod
-    );
+    await applyCustomersDateFilter();
 }
 
 
@@ -1551,140 +2070,20 @@ function destroyMarketingDashboardCharts() {
 }
 
 
-/* -- MARKETING CHANNEL HELPERS --*/
+/* -- MARKETING CHANNEL --*/
 
-function slugifyDashboardValue(value) {
-    return String(value)
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-|-$/g, "");
-}
-
-function populateMarketingChannels(records) {
-    const channelSelect = document.getElementById(
-        "marketing-channel"
-    );
-
-    if (!channelSelect) {
-        return;
-    }
-
-    const channels = Array.from(
-        getUniqueValues(
-            records,
-            "channel_name"
-        )
-    ).sort((first, second) => {
-        return String(first).localeCompare(
-            String(second)
+function getSelectedMarketingChannel() {
+    const channelSelect =
+        document.getElementById(
+            "marketing-channel"
         );
-    });
-
-    channelSelect.innerHTML = `
-        <option value="all">
-            All Channels
-        </option>
-    `;
-
-    channels.forEach((channel) => {
-        const option = document.createElement(
-            "option"
-        );
-
-        option.value =
-            slugifyDashboardValue(channel);
-
-        option.textContent = channel;
-
-        option.dataset.channelName = channel;
-
-        channelSelect.appendChild(option);
-    });
-}
-
-function getSelectedMarketingChannelName() {
-    const channelSelect = document.getElementById(
-        "marketing-channel"
-    );
-
-    if (
-        !channelSelect ||
-        channelSelect.value === "all"
-    ) {
-        return null;
-    }
-
-    const selectedOption =
-        channelSelect.options[
-            channelSelect.selectedIndex
-        ];
 
     return (
-        selectedOption?.dataset.channelName ??
-        null
+        channelSelect?.value ??
+        "ALL"
     );
 }
 
-function filterMarketingCostsByChannel(
-    costRecords,
-    channelName
-) {
-    if (!channelName) {
-        return [...costRecords];
-    }
-
-    return costRecords.filter((record) => {
-        return (
-            record.channel_name ===
-            channelName
-        );
-    });
-}
-
-
-/* -- MARKETING PERIOD DATA --*/
-
-function getMarketingPeriodRecords(
-    salesRecords,
-    costRecords,
-    period,
-    channelName = null
-) {
-    let filteredSales = filterRecordsByDate(
-        salesRecords,
-        period.startDate,
-        period.endDate
-    );
-
-    let filteredCosts =
-        filterMarketingCostsByDate(
-            costRecords,
-            period.startDate,
-            period.endDate
-        );
-
-    if (channelName) {
-        filteredSales = filterRecordsByField(
-            filteredSales,
-            "channel_name",
-            channelName
-        );
-
-        filteredCosts =
-            filterMarketingCostsByChannel(
-                filteredCosts,
-                channelName
-            );
-    }
-
-    return {
-        sales: filteredSales,
-        costs: filteredCosts
-    };
-}
 
 
 /* -- MARKETING COMPARISONS --*/
@@ -1710,13 +2109,13 @@ function compareMarketingMetrics(
         ),
 
         spend: compareMetricValues(
-            currentMetrics.adSpend,
-            previousMetrics.adSpend
+            currentMetrics.marketing_cost,
+            previousMetrics.marketing_cost
         ),
 
         roas:
-            currentMetrics.roas === null ||
-            previousMetrics.roas === null
+            currentMetrics.roas === 0 ||
+            previousMetrics.roas === 0
                 ? {
                     change: null,
                     direction: "neutral"
@@ -1727,8 +2126,8 @@ function compareMarketingMetrics(
                 ),
 
         netProfit: compareMetricValues(
-            currentMetrics.netProfit,
-            previousMetrics.netProfit
+            currentMetrics.net_profit,
+            previousMetrics.net_profit
         )
     };
 }
@@ -1738,7 +2137,9 @@ function compareMarketingMetrics(
 
 function updateMarketingDashboardKpis(
     currentMetrics,
-    previousMetrics
+    previousMetrics,
+    channel,
+    trendEnabled
 ) {
     updateElementText(
         "marketing-revenue-value",
@@ -1763,26 +2164,46 @@ function updateMarketingDashboardKpis(
 
     updateElementText(
         "marketing-spend-value",
-        currentMetrics.adSpend > 0
-            ? formatDashboardCurrency(
-                currentMetrics.adSpend
+        channel === "Tienda" ||
+        currentMetrics.marketing_cost <= 0
+            ? "No aplica"
+            : formatDashboardCurrency(
+                currentMetrics.marketing_cost
             )
-            : "No aplica"
     );
 
     updateElementText(
         "marketing-roas-value",
-        formatDashboardRoas(
-            currentMetrics.roas
-        )
+        channel === "Tienda" ||
+        currentMetrics.roas === 0
+            ? "No aplica"
+            : formatDashboardRoas(
+                currentMetrics.roas
+            )
     );
 
     updateElementText(
         "marketing-net-profit-value",
         formatDashboardCurrency(
-            currentMetrics.netProfit
+            currentMetrics.net_profit
         )
     );
+
+    if (!trendEnabled) {
+        clearDashboardTrends(
+            "marketing",
+            [
+                "revenue",
+                "profit",
+                "margin",
+                "spend",
+                "roas",
+                "net-profit"
+            ]
+        );
+
+        return;
+    }
 
     const comparisons =
         compareMarketingMetrics(
@@ -1843,18 +2264,75 @@ function updateMarketingDashboardKpis(
 }
 
 
+/* -- MARKETING CHART DATA --*/
+
+function aggregateMarketingTrendData(
+    trends
+) {
+    const channelMap = new Map();
+
+    trends.forEach((item) => {
+        const channel =
+            item.channel;
+
+        if (!channelMap.has(channel)) {
+            channelMap.set(
+                channel,
+                {
+                    channel,
+                    revenue: 0,
+                    profit: 0,
+                    marketing_cost: 0
+                }
+            );
+        }
+
+        const result =
+            channelMap.get(channel);
+
+        result.revenue +=
+            Number(
+                item.revenue ?? 0
+            );
+
+        result.profit +=
+            Number(
+                item.profit ?? 0
+            );
+
+        result.marketing_cost +=
+            Number(
+                item.marketing_cost ?? 0
+            );
+    });
+
+    return Array.from(
+        channelMap.values()
+    ).map((item) => {
+        const roas =
+            item.marketing_cost > 0
+                ? item.revenue /
+                    item.marketing_cost
+                : 0;
+
+        return {
+            ...item,
+            roas
+        };
+    });
+}
+
+
 /* -- MARKETING CHARTS --*/
 
 function renderMarketingDashboardCharts(
-    salesRecords,
-    costRecords
+    trends
 ) {
     destroyMarketingDashboardCharts();
 
     const channelResults =
-        aggregateMarketingByChannel(
-            salesRecords,
-            costRecords
+        aggregateMarketingTrendData(
+            trends
         );
 
     const revenueResults =
@@ -1880,19 +2358,21 @@ function renderMarketingDashboardCharts(
     const spendResults =
         [...channelResults]
             .filter((item) => {
-                return item.adSpend > 0;
+                return (
+                    item.marketing_cost > 0
+                );
             })
             .sort((first, second) => {
                 return (
-                    second.adSpend -
-                    first.adSpend
+                    second.marketing_cost -
+                    first.marketing_cost
                 );
             });
 
     const roasResults =
         [...channelResults]
             .filter((item) => {
-                return item.roas !== null;
+                return item.roas > 0;
             })
             .sort((first, second) => {
                 return (
@@ -1908,14 +2388,18 @@ function renderMarketingDashboardCharts(
                 label: "Revenue",
 
                 labels: revenueResults.map(
-                    (item) => item.channel
+                    (item) =>
+                        item.channel
                 ),
 
                 data: revenueResults.map(
-                    (item) => item.revenue
+                    (item) =>
+                        item.revenue
                 ),
 
-                color: CHART_COLORS.revenue,
+                color:
+                    CHART_COLORS.revenue,
+
                 format: "currency"
             }
         ),
@@ -1926,14 +2410,18 @@ function renderMarketingDashboardCharts(
                 label: "Profit",
 
                 labels: profitResults.map(
-                    (item) => item.channel
+                    (item) =>
+                        item.channel
                 ),
 
                 data: profitResults.map(
-                    (item) => item.profit
+                    (item) =>
+                        item.profit
                 ),
 
-                color: CHART_COLORS.profit,
+                color:
+                    CHART_COLORS.profit,
+
                 format: "currency"
             }
         ),
@@ -1944,14 +2432,18 @@ function renderMarketingDashboardCharts(
                 label: "Ad Spend",
 
                 labels: spendResults.map(
-                    (item) => item.channel
+                    (item) =>
+                        item.channel
                 ),
 
                 data: spendResults.map(
-                    (item) => item.adSpend
+                    (item) =>
+                        item.marketing_cost
                 ),
 
-                color: CHART_COLORS.accent,
+                color:
+                    CHART_COLORS.accent,
+
                 format: "currency"
             }
         ),
@@ -1962,14 +2454,18 @@ function renderMarketingDashboardCharts(
                 label: "ROAS",
 
                 labels: roasResults.map(
-                    (item) => item.channel
+                    (item) =>
+                        item.channel
                 ),
 
                 data: roasResults.map(
-                    (item) => item.roas
+                    (item) =>
+                        item.roas
                 ),
 
-                color: CHART_COLORS.revenue,
+                color:
+                    CHART_COLORS.revenue,
+
                 format: "roas"
             }
         )
@@ -1978,126 +2474,336 @@ function renderMarketingDashboardCharts(
     charts
         .filter(Boolean)
         .forEach((chart) => {
-            marketingDashboardCharts.push(chart);
+            marketingDashboardCharts.push(
+                chart
+            );
         });
 }
 
 
 /* -- MARKETING DASHBOARD RENDERING --*/
 
-function renderMarketingDashboard(
+async function renderMarketingDashboard(
     currentPeriod,
-    previousPeriod,
-    allCurrentPeriod
+    channel
 ) {
-    const currentMetrics =
-        calculateMarketingMetrics(
-            currentPeriod.sales,
-            currentPeriod.costs
+    const startDate =
+        parseDataDate(
+            currentPeriod.startDate
         );
 
-    const previousMetrics =
-        calculateMarketingMetrics(
-            previousPeriod.sales,
-            previousPeriod.costs
+    const endDate =
+        parseDataDate(
+            currentPeriod.endDate
         );
+
+    if (
+        !startDate ||
+        !endDate
+    ) {
+        return;
+    }
+
+    const trendPeriods =
+        getTrendComparisonPeriods(
+            startDate,
+            endDate
+        );
+
+    if (!trendPeriods) {
+        return;
+    }
+
+    const currentMetrics =
+        await getMarketingData(
+            formatDateForInput(startDate),
+            formatDateForInput(endDate),
+            channel
+        );
+
+    let previousMetrics = null;
+
+    if (trendPeriods.enabled) {
+        previousMetrics =
+            await getMarketingData(
+                formatDateForInput(
+                    trendPeriods.previousPeriod.startDate
+                ),
+                formatDateForInput(
+                    trendPeriods.previousPeriod.endDate
+                ),
+                channel
+            );
+    }
 
     updateMarketingDashboardKpis(
         currentMetrics,
-        previousMetrics
+        previousMetrics,
+        channel,
+        trendPeriods.enabled
     );
 
     renderMarketingDashboardCharts(
-        allCurrentPeriod.sales,
-        allCurrentPeriod.costs
+        currentMetrics.trends ?? []
     );
+
+    updateDashboardTrendLabels(
+        "marketing",
+        [
+            "revenue",
+            "profit",
+            "margin",
+            "spend",
+            "roas",
+            "net-profit"
+        ],
+        trendPeriods.enabled
+            ? "vs previous period"
+            : "vs previous 12 months"
+    );
+}
+
+
+/* -- MARKETING DATE FILTER --*/
+
+function getMarketingDatePeriods() {
+    const startDateInput =
+        document.getElementById(
+            "marketing-start-date"
+        );
+
+    const endDateInput =
+        document.getElementById(
+            "marketing-end-date"
+        );
+
+    if (
+        !startDateInput ||
+        !endDateInput ||
+        !startDateInput.value ||
+        !endDateInput.value
+    ) {
+        return null;
+    }
+
+    const startDate =
+        parseDataDate(
+            startDateInput.value
+        );
+
+    const endDate =
+        parseDataDate(
+            endDateInput.value
+        );
+
+    if (
+        !startDate ||
+        !endDate
+    ) {
+        return null;
+    }
+
+    if (startDate > endDate) {
+        return null;
+    }
+
+    return {
+        startDate,
+        endDate
+    };
 }
 
 
 /* -- MARKETING FILTERS --*/
 
-function applyMarketingFilters() {
-    const salesRecords = getSalesData();
+async function applyMarketingFilters() {
+    const periods =
+        getMarketingDatePeriods();
 
-    const costRecords =
-        getMarketingCostsData();
-
-    const selectedDates =
-        getSelectedDatePeriods(
-            salesRecords,
-            "marketing-start-date",
-            "marketing-end-date"
-        );
-
-    if (!selectedDates) {
+    if (!periods) {
         return;
     }
 
-    const channelName =
-        getSelectedMarketingChannelName();
+    const channel =
+        getSelectedMarketingChannel();
 
-    const currentPeriod =
-        getMarketingPeriodRecords(
-            salesRecords,
-            costRecords,
-            selectedDates.currentPeriod,
-            channelName
+    try {
+        await renderMarketingDashboard(
+            periods,
+            channel
         );
 
-    const previousPeriod =
-        getMarketingPeriodRecords(
-            salesRecords,
-            costRecords,
-            selectedDates.previousPeriod,
-            channelName
+    } catch (error) {
+        console.error(
+            "Error al cargar Marketing:",
+            error
+        );
+    }
+}
+
+
+/* -- MARKETING CHANNEL INITIALIZATION --*/
+
+async function initializeMarketingChannels() {
+    const channelSelect =
+        document.getElementById(
+            "marketing-channel"
         );
 
-    const allCurrentPeriod =
-        getMarketingPeriodRecords(
-            salesRecords,
-            costRecords,
-            selectedDates.currentPeriod
+    if (!channelSelect) {
+        return;
+    }
+
+    const {
+        minimumDate,
+        maximumDate
+    } = getDashboardDateRange();
+
+    const data =
+        await getMarketingData(
+            minimumDate,
+            maximumDate,
+            "ALL"
         );
 
-    renderMarketingDashboard(
-        currentPeriod,
-        previousPeriod,
-        allCurrentPeriod
-    );
+    const channels = [
+        ...new Set(
+            (data.trends ?? [])
+                .map(
+                    (item) =>
+                        item.channel
+                )
+                .filter(Boolean)
+        )
+    ];
+
+    const channelConfig = {
+        "Tienda": {
+            value: "Tienda",
+            label: "Tienda"
+        },
+
+        "Instagram": {
+            value: "Instagram",
+            label: "Instagram"
+        },
+
+        "Mercado Libre": {
+            value: "Mercado Libre",
+            label: "Mercado Libre"
+        },
+
+        "Página web": {
+            value: "Página Web",
+            label: "Página Web"
+        },
+
+        "Página Web": {
+            value: "Página Web",
+            label: "Página Web"
+        },
+
+        "Facebook/Messenger": {
+            value: "Facebook",
+            label: "Facebook/Messenger"
+        },
+
+        "Facebook": {
+            value: "Facebook",
+            label: "Facebook/Messenger"
+        }
+    };
+
+    channelSelect.innerHTML = `
+        <option value="ALL">
+            All Channels
+        </option>
+    `;
+
+    channels.forEach((channel) => {
+        const config =
+            channelConfig[channel] ?? {
+                value: channel,
+                label: channel
+            };
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            config.value;
+
+        option.textContent =
+            config.label;
+
+        channelSelect.appendChild(
+            option
+        );
+    });
+
+    channelSelect.value = "ALL";
 }
 
 
 /* -- MARKETING INITIALIZATION --*/
 
-function initMarketingDashboard() {
-    const salesRecords = getSalesData();
-
-    populateMarketingChannels(
-        salesRecords
-    );
-
-    const defaultData =
-        configureMonthlyDateFilter(
-            salesRecords,
-            "marketing-start-date",
-            "marketing-end-date",
-            applyMarketingFilters
+async function initMarketingDashboard() {
+    const startDateInput =
+        document.getElementById(
+            "marketing-start-date"
         );
 
-    const channelSelect = document.getElementById(
-        "marketing-channel"
+    const endDateInput =
+        document.getElementById(
+            "marketing-end-date"
+        );
+
+    const channelSelect =
+        document.getElementById(
+            "marketing-channel"
+        );
+
+    if (
+        !startDateInput ||
+        !endDateInput
+    ) {
+        return;
+    }
+
+    const lastAvailableMonth =
+        getLastAvailableMonthRange();
+
+    if (!lastAvailableMonth) {
+        return;
+    }
+
+    configureDateInputRange(
+        startDateInput,
+        endDateInput,
+        lastAvailableMonth.startDate,
+        lastAvailableMonth.endDate
     );
 
     if (channelSelect) {
+        await initializeMarketingChannels();
+
         channelSelect.addEventListener(
             "change",
             applyMarketingFilters
         );
     }
 
-    if (!defaultData) {
-        return;
-    }
+    startDateInput.addEventListener(
+        "change",
+        applyMarketingFilters
+    );
 
-    applyMarketingFilters();
+    endDateInput.addEventListener(
+        "change",
+        applyMarketingFilters
+    );
+
+    await applyMarketingFilters();
 }
