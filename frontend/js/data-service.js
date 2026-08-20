@@ -15,8 +15,12 @@ const API_ENDPOINTS = {
     marketing: `${API_BASE_URL}/marketing`
 };
 
+/* -- API REQUEST CACHE --*/
+
+const pendingRequests = new Map();
 
 /* -- API REQUEST --*/
+
 
 async function fetchApiData(
     endpoint,
@@ -47,27 +51,40 @@ async function fetchApiData(
             ? `${endpoint}?${queryString}`
             : endpoint;
 
-    const response = await fetch(url);
-
-    if (!response.ok) {
-        throw new Error(
-            `No se pudo obtener la información de la API: ${response.status}`
-        );
+    if (pendingRequests.has(url)) {
+        return pendingRequests.get(url);
     }
 
-    const result = await response.json();
+    const request = fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(
+                    `No se pudo obtener la información de la API: ${response.status}`
+                );
+            }
 
-    if (
-        !result ||
-        result.success !== true ||
-        !result.data
-    ) {
-        throw new Error(
-            `La respuesta de la API no tiene el formato esperado: ${endpoint}`
-        );
-    }
+            return response.json();
+        })
+        .then((result) => {
+            if (
+                !result ||
+                result.success !== true ||
+                !result.data
+            ) {
+                throw new Error(
+                    `La respuesta de la API no tiene el formato esperado: ${endpoint}`
+                );
+            }
 
-    return result.data;
+            return result.data;
+        })
+        .finally(() => {
+            pendingRequests.delete(url);
+        });
+
+    pendingRequests.set(url, request);
+
+    return request;
 }
 
 

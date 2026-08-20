@@ -19,6 +19,28 @@ const DASHBOARD_DATA_RANGE = {
 
 /* -- VALUE FORMATTERS --*/
 
+/* -- DASHBOARD NUMBER FORMATTERS --*/
+
+const DASHBOARD_CURRENCY_FORMATTER =
+    new Intl.NumberFormat(
+        "en-US",
+        {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits: 0
+        }
+    );
+
+
+const DASHBOARD_INTEGER_FORMATTER =
+    new Intl.NumberFormat(
+        "en-US",
+        {
+            maximumFractionDigits: 0
+        }
+    );
+
+
 function formatDashboardCurrency(value) {
     if (
         value === null ||
@@ -27,14 +49,9 @@ function formatDashboardCurrency(value) {
         return "No aplica";
     }
 
-    return new Intl.NumberFormat(
-        "en-US",
-        {
-            style: "currency",
-            currency: "USD",
-            maximumFractionDigits: 0
-        }
-    ).format(value);
+    return DASHBOARD_CURRENCY_FORMATTER.format(
+        value
+    );
 }
 
 
@@ -46,12 +63,9 @@ function formatDashboardInteger(value) {
         return "No aplica";
     }
 
-    return new Intl.NumberFormat(
-        "en-US",
-        {
-            maximumFractionDigits: 0
-        }
-    ).format(value);
+    return DASHBOARD_INTEGER_FORMATTER.format(
+        value
+    );
 }
 
 
@@ -177,24 +191,44 @@ function configureDateInputRange(
 
 
 function getDatasetDateRange(records) {
-    const dates = records
-        .map((record) => {
-            return parseDataDate(
+    let minimumDate = null;
+    let maximumDate = null;
+
+    records.forEach((record) => {
+        const date =
+            parseDataDate(
                 record.purchase_date
             );
-        })
-        .filter(Boolean)
-        .sort((firstDate, secondDate) => {
-            return firstDate - secondDate;
-        });
 
-    if (dates.length === 0) {
+        if (!date) {
+            return;
+        }
+
+        if (
+            !minimumDate ||
+            date < minimumDate
+        ) {
+            minimumDate = date;
+        }
+
+        if (
+            !maximumDate ||
+            date > maximumDate
+        ) {
+            maximumDate = date;
+        }
+    });
+
+    if (
+        !minimumDate ||
+        !maximumDate
+    ) {
         return null;
     }
 
     return {
-        startDate: dates[0],
-        endDate: dates[dates.length - 1]
+        startDate: minimumDate,
+        endDate: maximumDate
     };
 }
 
@@ -1061,21 +1095,27 @@ async function applyExecutiveDateFilter() {
             : "vs previous 12 months";
 
     try {
-        const currentData =
-            await getExecutiveData(
-                formatDateForInput(
-                    startDate
-                ),
-                formatDateForInput(
-                    endDate
-                )
+        const currentStartDate =
+            formatDateForInput(
+                startDate
             );
 
-        let previousData = null;
+        const currentEndDate =
+            formatDateForInput(
+                endDate
+            );
+
+        const currentRequest =
+            getExecutiveData(
+                currentStartDate,
+                currentEndDate
+            );
+
+        let previousRequest = null;
 
         if (trendEnabled) {
-            previousData =
-                await getExecutiveData(
+            previousRequest =
+                getExecutiveData(
                     formatDateForInput(
                         trendPeriods.previousPeriod.startDate
                     ),
@@ -1084,6 +1124,14 @@ async function applyExecutiveDateFilter() {
                     )
                 );
         }
+
+        const [
+            currentData,
+            previousData
+        ] = await Promise.all([
+            currentRequest,
+            previousRequest
+        ]);
 
         renderExecutiveDashboard(
             currentData,
@@ -1215,6 +1263,32 @@ function destroyProductsDashboardCharts() {
 }
 
 
+/* -- PRODUCTS TOP METRIC --*/
+
+function getTopMetricResult(
+    results,
+    metric
+) {
+    let topResult = null;
+    let topValue = -Infinity;
+
+    results.forEach((item) => {
+        const value =
+            Number(item?.[metric]) || 0;
+
+        if (
+            topResult === null ||
+            value > topValue
+        ) {
+            topResult = item;
+            topValue = value;
+        }
+    });
+
+    return topResult;
+}
+
+
 /* -- PRODUCTS KPI UPDATE --*/
 
 function updateProductsKpiCards(
@@ -1222,17 +1296,33 @@ function updateProductsKpiCards(
     dimension,
     dimensionConfig
 ) {
+    const results =
+        Array.isArray(data?.financial)
+            ? data.financial
+            : [];
+
     const topRevenue =
-        data.top_revenue ?? null;
+        getTopMetricResult(
+            results,
+            "revenue"
+        );
 
     const topProfit =
-        data.top_profit ?? null;
+        getTopMetricResult(
+            results,
+            "profit"
+        );
 
-    const topMargin =
-        data.top_margin ?? null;
+    const thirdMetricName =
+        dimension === "product"
+            ? "units_sold"
+            : "margin";
 
-    const topSales =
-        data.top_sales ?? null;
+    const thirdResult =
+        getTopMetricResult(
+            results,
+            thirdMetricName
+        );
 
     const cards = [
         {
@@ -1276,23 +1366,16 @@ function updateProductsKpiCards(
                     : `Top Margin ${dimensionConfig.singular}`,
 
             value:
-                dimension === "product"
-                    ? (
-                        topSales?.product ??
-                        "No data"
-                    )
-                    : (
-                        topMargin?.dimension ??
-                        "No data"
-                    ),
+                thirdResult?.dimension ??
+                "No data",
 
             metric:
                 dimension === "product"
                     ? `${formatDashboardInteger(
-                        topSales?.units_sold ?? 0
+                        thirdResult?.units_sold ?? 0
                     )} units`
                     : formatDashboardPercentage(
-                        topMargin?.margin ?? 0
+                        thirdResult?.margin ?? 0
                     ),
 
             label:
@@ -1327,6 +1410,20 @@ function updateProductsKpiCards(
     });
 }
 
+
+
+/* -- PRODUCTS SORTING --*/
+
+function sortMetricResults(
+    results,
+    metric
+) {
+    return [...results].sort(
+        (a, b) =>
+            (Number(b[metric]) || 0) -
+            (Number(a[metric]) || 0)
+    );
+}
 
 /* -- PRODUCTS CHARTS --*/
 
@@ -1887,22 +1984,17 @@ async function renderCustomersDashboard(
         return;
     }
 
-    const currentData =
-        await getCustomersData(
+    const currentRequest =
+        getCustomersData(
             formatDateForInput(startDate),
             formatDateForInput(endDate)
         );
 
-    const current =
-        currentData?.data ??
-        currentData ??
-        {};
-
-    let comparisonPrevious = null;
+    let previousRequest = null;
 
     if (trendPeriods.enabled) {
-        const previousData =
-            await getCustomersData(
+        previousRequest =
+            getCustomersData(
                 formatDateForInput(
                     trendPeriods.previousPeriod.startDate
                 ),
@@ -1910,12 +2002,25 @@ async function renderCustomersDashboard(
                     trendPeriods.previousPeriod.endDate
                 )
             );
-
-        comparisonPrevious =
-            previousData?.data ??
-            previousData ??
-            {};
     }
+
+    const [
+        currentData,
+        previousData
+    ] = await Promise.all([
+        currentRequest,
+        previousRequest
+    ]);
+
+    const current =
+        currentData?.data ??
+        currentData ??
+        {};
+
+    const comparisonPrevious =
+        previousData?.data ??
+        previousData ??
+        {};
 
     updateCustomersDashboardKpis(
         current,
@@ -2514,18 +2619,18 @@ async function renderMarketingDashboard(
         return;
     }
 
-    const currentMetrics =
-        await getMarketingData(
+    const currentRequest =
+        getMarketingData(
             formatDateForInput(startDate),
             formatDateForInput(endDate),
             channel
         );
 
-    let previousMetrics = null;
+    let previousRequest = null;
 
     if (trendPeriods.enabled) {
-        previousMetrics =
-            await getMarketingData(
+        previousRequest =
+            getMarketingData(
                 formatDateForInput(
                     trendPeriods.previousPeriod.startDate
                 ),
@@ -2535,6 +2640,14 @@ async function renderMarketingDashboard(
                 channel
             );
     }
+
+    const [
+        currentMetrics,
+        previousMetrics
+    ] = await Promise.all([
+        currentRequest,
+        previousRequest
+    ]);
 
     updateMarketingDashboardKpis(
         currentMetrics,
@@ -2644,7 +2757,7 @@ async function applyMarketingFilters() {
 
 /* -- MARKETING CHANNEL INITIALIZATION --*/
 
-async function initializeMarketingChannels() {
+function initializeMarketingChannels() {
     const channelSelect =
         document.getElementById(
             "marketing-channel"
@@ -2654,94 +2767,50 @@ async function initializeMarketingChannels() {
         return;
     }
 
-    const {
-        minimumDate,
-        maximumDate
-    } = getDashboardDateRange();
-
-    const data =
-        await getMarketingData(
-            minimumDate,
-            maximumDate,
-            "ALL"
-        );
-
     const channels = [
-        ...new Set(
-            (data.trends ?? [])
-                .map(
-                    (item) =>
-                        item.channel
-                )
-                .filter(Boolean)
-        )
-    ];
-
-    const channelConfig = {
-        "Tienda": {
+        {
+            value: "ALL",
+            label: "All Channels"
+        },
+        {
             value: "Tienda",
             label: "Tienda"
         },
-
-        "Instagram": {
+        {
             value: "Instagram",
             label: "Instagram"
         },
-
-        "Mercado Libre": {
+        {
             value: "Mercado Libre",
             label: "Mercado Libre"
         },
-
-        "Página web": {
+        {
             value: "Página Web",
             label: "Página Web"
         },
-
-        "Página Web": {
-            value: "Página Web",
-            label: "Página Web"
-        },
-
-        "Facebook/Messenger": {
-            value: "Facebook",
-            label: "Facebook/Messenger"
-        },
-
-        "Facebook": {
+        {
             value: "Facebook",
             label: "Facebook/Messenger"
         }
-    };
+    ];
 
-    channelSelect.innerHTML = `
-        <option value="ALL">
-            All Channels
-        </option>
-    `;
+    channelSelect.innerHTML = "";
 
-    channels.forEach((channel) => {
-        const config =
-            channelConfig[channel] ?? {
-                value: channel,
-                label: channel
-            };
+    channels.forEach(
+        ({ value, label }) => {
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        const option =
-            document.createElement(
-                "option"
+            option.value = value;
+            option.textContent = label;
+
+            channelSelect.appendChild(
+                option
             );
-
-        option.value =
-            config.value;
-
-        option.textContent =
-            config.label;
-
-        channelSelect.appendChild(
-            option
-        );
-    });
+        }
+    );
 
     channelSelect.value = "ALL";
 }
