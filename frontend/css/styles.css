@@ -74,7 +74,6 @@
 
     /* Layout */
     --sidebar-width: 15rem;
-    --control-height: var(--control-height);
     --control-width-date: 9rem;
     --control-width-select: 11rem;
 

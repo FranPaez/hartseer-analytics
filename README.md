@@ -19,6 +19,8 @@ Hartseer Analytics is an end-to-end Business Intelligence project designed to an
 
 The project combines relational database design, SQL analytics, Business Intelligence dashboards and a modular web application into a single analytical platform focused on supporting business decision-making.
 
+Version 1.0 includes a production REST API that connects the analytical dashboards to MySQL through a FastAPI backend.
+
 ---
 
 ## Features
@@ -29,8 +31,10 @@ The project combines relational database design, SQL analytics, Business Intelli
 - Marketing Analytics
 - Interactive Date Filters
 - Dynamic Product Grouping
+- Dynamic Marketing Channel Filtering
+- REST API Integration
+- Live MySQL Data Access
 - Modular SPA Architecture
-- JSON Data Provider (v1.0)
 - Business Storytelling Validation
 
 ---
@@ -40,19 +44,51 @@ The project combines relational database design, SQL analytics, Business Intelli
 | Layer | Technology |
 |--------|------------|
 | Database | MySQL |
-| Analytics | SQL |
-| Business Intelligence | Power BI |
+| Backend | Python · FastAPI · Uvicorn |
+| API | REST |
 | Frontend | HTML5 · CSS3 · JavaScript |
 | Architecture | SPA |
 | Visualization | Chart.js |
-| Data Processing | Python |
-| Data Source | JSON |
+| Business Intelligence | Power BI |
+| Analytics | SQL |
+| Deployment | Railway · GitHub Pages |
 
 ---
 
 ## Project Architecture
 
-![Architecture](frontend/assets/images/architecture.png)
+The current application follows a layered architecture:
+
+MySQL
+  ↓
+FastAPI REST API
+  ↓
+Frontend Data Service
+  ↓
+Dashboard Controller
+  ↓
+Dashboard Views
+  ↓
+Charts / UI
+
+The frontend is deployed through GitHub Pages, while the backend API is deployed through Railway.
+
+---
+
+## API
+
+The production API is versioned under /api/v1.
+
+Available Endpoints
+
+| Endpoint | Purpose | Parameters |
+| /api/v1/health | API and database health check | ---- |
+| /api/v1/executive | Executive dashboard data | start_date, end_date |
+| /api/v1/products | Product analytics | start_date, end_date, group_by |
+| /api/v1/customers | Customer analytics | start_date, end_date |
+| /api/v1/marketing | Marketing analytics | start_date, end_date, channel |
+
+The API returns standardized responses containing success, data and meta fields.
 
 ---
 
@@ -61,42 +97,40 @@ The project combines relational database design, SQL analytics, Business Intelli
 ```text
 Hartseer Analytics
 │
-├── assets/
-│   ├──images/
-│   └──icons/
-│       ├── cards
-│       ├── sidebar
-│       ├── trends
-│   
+├── analytics/
+│   └── documentation/
 │
-├── css/
-│   └── styles.css
+├── backend/
+│   ├── app/
+│   │   ├── controllers/
+│   │   ├── core/
+│   │   ├── database/
+│   │   ├── repositories/
+│   │   ├── routes/
+│   │   ├── schemas/
+│   │   └── services/
+│   ├── .env.example
+│   └── requirements.txt
 │
-├── data/
-│   ├── sales.json
-│   └── marketing-costs.json
-│
-├── js/
-│   ├── analytics.js
-│   ├── app.js
-│   ├── charts.js
-│   ├── dashboard-controller.js
-│   ├── data-service.js
-│   ├── router.js
-│   └── views/
-│       ├── executive.js
-│       ├── products.js
-│       ├── customers.js
-│       └── marketing.js
-│
-├── tools/
-│   └── export_to_json.py
-│
-│   
-├── index.html
+├── frontend/
+│   ├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   ├── analytics.js
+│   │   ├── app.js
+│   │   ├── charts.js
+│   │   ├── dashboard-controller.js
+│   │   ├── data-service.js
+│   │   ├── router.js
+│   │   └── views/
+│   │       ├── executive.js
+│   │       ├── products.js
+│   │       ├── customers.js
+│   │       └── marketing.js
+│   └── index.html
 │
 ├── .gitignore
-│
 └── README.md
 ```
 
@@ -151,6 +185,8 @@ The project includes complete technical documentation covering every development
 
 - Complete SQL Database
 - Business Intelligence Dashboards
+- Production REST API
+- MySQL Integration
 - Frontend SPA
 - Technical Documentation
 
@@ -160,8 +196,6 @@ The project includes complete technical documentation covering every development
 
 **v1.1**
 
-- Backend API
-- Live MySQL Connection
 - Reports Module
 
 **v1.2**
@@ -173,9 +207,11 @@ The project includes complete technical documentation covering every development
 
 ## Current Scope
 
-The current version consumes data from static JSON files generated from the validated project dataset.
+Version 1.0 provides an integrated analytical platform in which the frontend dashboards consume business data through the production REST API.
 
-Backend/API integration has been intentionally scheduled for version 1.1, allowing the first release to focus on the analytical workflow, frontend architecture and user experience.
+The backend exposes analytical endpoints through FastAPI, retrieves data from MySQL and returns standardized API responses to the frontend.
+
+The current release covers Executive, Products, Customers and Marketing dashboards.
 
 ---
 

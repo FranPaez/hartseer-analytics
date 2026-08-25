@@ -3,11 +3,16 @@ from datetime import date
 from fastapi import APIRouter, Query
 
 from app.controllers.marketing import marketing_controller
+from app.schemas.marketing import MarketingResponseSchema
+
 
 router = APIRouter()
 
 
-@router.get("/marketing")
+@router.get(
+    "/marketing",
+    response_model=MarketingResponseSchema,
+)
 def get_dashboard(
     start_date: date = Query(...),
     end_date: date = Query(...),
