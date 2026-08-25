@@ -3,11 +3,11 @@
 ### End-to-End Business Intelligence Platform for Retail Business Analysis
 
 [🌐 Live Demo](https://franpaez.github.io/hartseer-analytics/) •
-[📄 Documentation](https://github.com/FranPaez/hartseer-analytics/blob/main/analytics/documentation/Hartseer_Analytics_Documentation.pdf) •
-[📘 Frontend Documentation](https://github.com/FranPaez/hartseer-analytics/blob/main/analytics/documentation/Hartseer_Frontend_Documentation.pdf) •
-[🎨 Analytics Design](https://github.com/FranPaez/hartseer-analytics/blob/main/analytics/documentation/Hartseer_Desing_Analytics.pdf) •
+[📄 Documentation](analytics/documentation/Hartseer_Analytics_Documentation.pdf) •
+[📘 Frontend Documentation](analytics/documentation/Hartseer_Frontend_Documentation.pdf) •
+[🎨 Analytics Design](analytics/documentation/Hartseer_Desing_Analytics.pdf)
 
-SQL • Power BI • JavaScript • MySQL • Chart.js
+SQL • Power BI • MySQL • Python • FastAPI • JavaScript • Chart.js
 
 ![Executive Dashboard](frontend/assets/images/executive-dashboard.png)
 
@@ -57,8 +57,11 @@ Version 1.0 includes a production REST API that connects the analytical dashboar
 
 ## Project Architecture
 
+![Architecture](frontend/assets/images/architecture.png)
+
 The current application follows a layered architecture:
 
+```text
 MySQL
   ↓
 FastAPI REST API
@@ -70,6 +73,7 @@ Dashboard Controller
 Dashboard Views
   ↓
 Charts / UI
+```
 
 The frontend is deployed through GitHub Pages, while the backend API is deployed through Railway.
 
@@ -77,18 +81,19 @@ The frontend is deployed through GitHub Pages, while the backend API is deployed
 
 ## API
 
-The production API is versioned under /api/v1.
+The production API is versioned under `/api/v1`.
 
-Available Endpoints
+### Available Endpoints
 
 | Endpoint | Purpose | Parameters |
-| /api/v1/health | API and database health check | ---- |
-| /api/v1/executive | Executive dashboard data | start_date, end_date |
-| /api/v1/products | Product analytics | start_date, end_date, group_by |
-| /api/v1/customers | Customer analytics | start_date, end_date |
-| /api/v1/marketing | Marketing analytics | start_date, end_date, channel |
+|----------|---------|------------|
+| `/api/v1/health` | API and database health check | — |
+| `/api/v1/executive` | Executive dashboard data | `start_date`, `end_date` |
+| `/api/v1/products` | Product analytics | `start_date`, `end_date`, `group_by` |
+| `/api/v1/customers` | Customer analytics | `start_date`, `end_date` |
+| `/api/v1/marketing` | Marketing analytics | `start_date`, `end_date`, `channel` |
 
-The API returns standardized responses containing success, data and meta fields.
+The API returns standardized responses containing `success`, `data` and `meta` fields.
 
 ---
 
@@ -164,9 +169,9 @@ Hartseer Analytics
 
 ## Documentation
 
-The project includes complete technical documentation covering every development stage.
+The project includes technical documentation covering the development process, analytical design and frontend implementation.
 
-- 📄 **Hartseer Documentation** 
+- 📄 **Hartseer Documentation**
   - Complete project development process.
 
 - 📄 **Hartseer Analytics Design**
