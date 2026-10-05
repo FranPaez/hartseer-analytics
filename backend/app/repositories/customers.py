@@ -1,6 +1,7 @@
 from datetime import date
+from heapq import nlargest
 
-from app.database.session import get_db_session
+from app.database.session import get_db_cursor
 
 
 class CustomersRepository:
@@ -12,10 +13,8 @@ class CustomersRepository:
         end_date: date,
     ) -> dict:
 
-        connection = get_db_session()
-        cursor = connection.cursor(dictionary=True)
 
-        try:
+        with get_db_cursor() as cursor:
 
             # New Customers
 
@@ -42,55 +41,36 @@ class CustomersRepository:
                 );
                 """,
                 (start_date, end_date),
-                )
+            )
 
             new_customers = cursor.fetchone()
 
-            # Returning Customers & Recurrence Rate
-
+            # Aggregate purchase counts in SQL instead of transferring every customer.
             cursor.execute(
                 """
                 SELECT
-                    id_cliente,
-                    COUNT(*) AS purchase_count
-                FROM compra
-                WHERE fecha >= %s
-                AND fecha < DATE_ADD(%s, INTERVAL 1 DAY)
-                GROUP BY id_cliente;
+                    COUNT(*) AS total_customers,
+                    COALESCE(SUM(purchase_count > 1), 0) AS returning_customers,
+                    COALESCE(SUM(purchase_count), 0) AS total_orders
+                FROM (
+                    SELECT id_cliente, COUNT(*) AS purchase_count
+                    FROM compra
+                    WHERE fecha >= %s
+                    AND fecha < DATE_ADD(%s, INTERVAL 1 DAY)
+                    GROUP BY id_cliente
+                ) AS customer_purchases;
                 """,
                 (start_date, end_date),
             )
 
-            customers = cursor.fetchall()
-
-            returning_customers = sum(
-                1
-                for customer in customers
-                if customer["purchase_count"] > 1
-            )
-
-            total_customers = len(customers)
-
+            purchase_summary = cursor.fetchone()
+            returning_customers = int(purchase_summary["returning_customers"])
+            total_customers = int(purchase_summary["total_customers"])
             recurrence_rate = (
                 (returning_customers / total_customers) * 100
                 if total_customers > 0
                 else 0
             )
-
-            # Total Orders
-
-            cursor.execute(
-                """
-                SELECT
-                    COUNT(id_compra) AS total_orders
-                FROM compra
-                WHERE fecha >= %s
-                AND fecha < DATE_ADD(%s, INTERVAL 1 DAY);
-                """,
-                (start_date, end_date),
-            )
-
-            total_orders = cursor.fetchone()
 
             # Customer Financial Performance
 
@@ -145,42 +125,17 @@ class CustomersRepository:
                 for row in cursor.fetchall()
             ]
 
-            top_revenue = max(
-                financial,
-                key=lambda row: row["revenue"],
-            ) if financial else {
-                "customer": "No data",
-                "revenue": 0,
-                "profit": 0,
-            }
-
-            top_profit = max(
-                financial,
-                key=lambda row: row["profit"],
-            ) if financial else {
-                "customer": "No data",
-                "revenue": 0,
-                "profit": 0,
-            }
-
-            # Customer Rankings
-
-            revenue_ranking = sorted(
-                financial,
-                key=lambda row: row["revenue"],
-                reverse=True,
-            )[:5]
-
-            profit_ranking = sorted(
-                financial,
-                key=lambda row: row["profit"],
-                reverse=True,
-            )[:5]
+            # Keep only the five highest rows while preserving tie order.
+            revenue_ranking = nlargest(5, financial, key=lambda row: row["revenue"])
+            profit_ranking = nlargest(5, financial, key=lambda row: row["profit"])
+            empty_customer = {"customer": "No data", "revenue": 0, "profit": 0}
+            top_revenue = revenue_ranking[0] if revenue_ranking else empty_customer
+            top_profit = profit_ranking[0] if profit_ranking else empty_customer
 
             return {
                 "new_customers": new_customers["new_customers"],
                 "returning_customers": returning_customers,
-                "total_orders": total_orders["total_orders"],
+                "total_orders": int(purchase_summary["total_orders"]),
                 "recurrence_rate": round(
                     recurrence_rate,
                     2,
@@ -190,10 +145,6 @@ class CustomersRepository:
                 "revenue_ranking": revenue_ranking,
                 "profit_ranking": profit_ranking,
             }
-
-        finally:
-            cursor.close()
-            connection.close()
 
 
 customers_repository = CustomersRepository()

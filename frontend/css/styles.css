@@ -846,3 +846,43 @@ body {
     opacity: 0;
     transform: translateY(0.25rem);
 }
+
+/* -- DASHBOARD LOADING AND RECOVERY --*/
+
+.dashboard-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: var(--space-4);
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 0.75rem;
+    background: rgba(59, 130, 246, 0.08);
+    color: var(--color-text-primary);
+}
+
+.dashboard-status[hidden],
+.dashboard-status__retry[hidden] {
+    display: none;
+}
+
+.dashboard-status--error {
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.dashboard-status__retry {
+    padding: 0.5rem 0.85rem;
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    border-radius: 0.5rem;
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--color-text-primary);
+    font: inherit;
+    cursor: pointer;
+}
+
+.dashboard-status__retry:focus-visible {
+    outline: 2px solid var(--color-accent, #3b82f6);
+    outline-offset: 3px;
+}

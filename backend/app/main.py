@@ -1,13 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
+from app.core.responses import error_response
+from app.database.connection import DatabaseUnavailableError
 
 from app.routes.executive import router as executive_router
 from app.routes.health import router as health_router
 from app.routes.products import router as products_router
 from app.routes.customers import router as customers_router
-from app.routes import marketing
+from app.routes.marketing import router as marketing_router
 
 
 app = FastAPI(
@@ -21,6 +23,18 @@ app = FastAPI(
         "name": "MIT License",
     },
 )
+
+
+@app.exception_handler(DatabaseUnavailableError)
+def database_unavailable_handler(
+    _request: Request,
+    _error: DatabaseUnavailableError,
+):
+    return error_response(
+        "DATABASE_UNAVAILABLE",
+        "El servicio de datos no está disponible temporalmente.",
+        status_code=503,
+    )
 
 
 app.add_middleware(
@@ -65,7 +79,7 @@ app.include_router(
 
 
 app.include_router(
-    marketing.router,
+    marketing_router,
     prefix="/api/v1",
     tags=["Marketing"],
 )

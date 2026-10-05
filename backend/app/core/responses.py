@@ -1,9 +1,20 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 from fastapi.responses import JSONResponse
 
 from app.core.config import settings
+
+
+def build_response_meta(meta: dict | None = None) -> dict:
+    """Build metadata while preserving the existing UTC timestamp format."""
+    response_meta = {
+        "api_version": settings.API_VERSION,
+        "timestamp": datetime.now(timezone.utc).replace(tzinfo=None).isoformat(),
+    }
+    if meta:
+        response_meta.update(meta)
+    return response_meta
 
 
 def success_response(
@@ -18,14 +29,8 @@ def success_response(
     response = {
         "success": True,
         "data": data,
-        "meta": {
-            "api_version": settings.API_VERSION,
-            "timestamp": datetime.utcnow().isoformat(),
-        },
+        "meta": build_response_meta(meta),
     }
-
-    if meta:
-        response["meta"].update(meta)
 
     return JSONResponse(
         status_code=status_code,
@@ -50,17 +55,11 @@ def error_response(
             "code": code,
             "message": message,
         },
-        "meta": {
-            "api_version": settings.API_VERSION,
-            "timestamp": datetime.utcnow().isoformat(),
-        },
+        "meta": build_response_meta(meta),
     }
 
     if details:
         response["error"]["details"] = details
-
-    if meta:
-        response["meta"].update(meta)
 
     return JSONResponse(
         status_code=status_code,

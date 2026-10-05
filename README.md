@@ -233,3 +233,22 @@ Artificial Intelligence tools were used during the frontend implementation as a 
 ## License
 
 This project is intended for educational and portfolio purposes.
+
+---
+
+## Regression Checks
+
+Run from the project root with Node.js 18+ and the backend Python environment:
+
+```powershell
+node frontend/tests/regressions.cjs
+backend/.venv/Scripts/python.exe backend/tests/test_regressions.py
+```
+
+On other platforms, use the Python interpreter from your backend environment.
+The checks use deterministic fixtures and require no running database or external API.
+Frontend checks exercise the real scripts with DOM and Chart adapters. Backend checks
+exercise the API routes and analytical SQL through a SQLite adapter for MySQL date functions.
+They complement validation in a browser and against MySQL.
+
+See [optimization notes](OPTIMIZATIONS.md) for changes and verification scope.

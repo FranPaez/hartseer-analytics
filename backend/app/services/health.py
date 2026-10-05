@@ -1,4 +1,4 @@
-from app.database.session import get_db_session
+from app.database.session import get_db_connection
 
 
 class HealthService:
@@ -8,20 +8,13 @@ class HealthService:
         database_status = "disconnected"
 
         try:
-            connection = get_db_session()
-
-            if connection.is_connected():
-                database_status = "connected"
-
-            connection.close()
-
+            with get_db_connection() as connection:
+                if connection.is_connected():
+                    database_status = "connected"
         except Exception:
             database_status = "disconnected"
 
-        return {
-            "status": "ok",
-            "database": database_status,
-        }
+        return {"status": "ok", "database": database_status}
 
 
 health_service = HealthService()

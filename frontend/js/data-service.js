@@ -18,6 +18,39 @@ const API_ENDPOINTS = {
 /* -- API REQUEST CACHE --*/
 
 const pendingRequests = new Map();
+const API_REQUEST_TIMEOUT_MS = 60_000;
+const API_MAX_ATTEMPTS = 3;
+const API_RETRY_DELAY_MS = 1_000;
+const API_TRANSIENT_STATUSES = new Set([502, 503, 504]);
+
+async function fetchApiResponse(url, signal) {
+    for (let attempt = 1; attempt <= API_MAX_ATTEMPTS; attempt += 1) {
+        try {
+            const response = await fetch(url, { signal });
+
+            if (response.ok) {
+                return response;
+            }
+
+            const error = new Error(
+                `No se pudo obtener la información de la API: ${response.status}`
+            );
+            error.status = response.status;
+            throw error;
+        } catch (error) {
+            const retryable = (
+                error.name === "TypeError" ||
+                API_TRANSIENT_STATUSES.has(error.status)
+            );
+
+            if (signal.aborted || !retryable || attempt === API_MAX_ATTEMPTS) {
+                throw error;
+            }
+
+            await new Promise((resolve) => setTimeout(resolve, API_RETRY_DELAY_MS));
+        }
+    }
+}
 
 /* -- API REQUEST --*/
 
@@ -55,16 +88,14 @@ async function fetchApiData(
         return pendingRequests.get(url);
     }
 
-    const request = fetch(url)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(
-                    `No se pudo obtener la información de la API: ${response.status}`
-                );
-            }
+    const controller = new AbortController();
+    const timeoutId = setTimeout(
+        () => controller.abort(),
+        API_REQUEST_TIMEOUT_MS
+    );
 
-            return response.json();
-        })
+    const request = fetchApiResponse(url, controller.signal)
+        .then((response) => response.json())
         .then((result) => {
             if (
                 !result ||
@@ -79,6 +110,7 @@ async function fetchApiData(
             return result.data;
         })
         .finally(() => {
+            clearTimeout(timeoutId);
             pendingRequests.delete(url);
         });
 

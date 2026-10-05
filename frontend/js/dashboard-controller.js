@@ -9,6 +9,65 @@ let customersDashboardCharts = [];
 let marketingDashboardCharts = [];
 
 
+/* -- DASHBOARD REQUEST LIFECYCLE --*/
+
+const dashboardRequests = new Map();
+
+function setDashboardStatus(message, retryHandler = null) {
+    const status = document.getElementById("dashboard-status");
+    const messageElement = document.getElementById("dashboard-status-message");
+    const retryButton = document.getElementById("dashboard-retry");
+
+    if (!status || !messageElement || !retryButton) {
+        return;
+    }
+
+    status.hidden = !message;
+    status.classList.toggle("dashboard-status--error", Boolean(retryHandler));
+    messageElement.textContent = message;
+    retryButton.hidden = !retryHandler;
+    retryButton.onclick = retryHandler;
+}
+
+function showDashboardLoadError(isCurrentRequest, retryHandler) {
+    if (isCurrentRequest()) {
+        setDashboardStatus(
+            "No se pudieron cargar los datos. Reintentá en unos instantes.",
+            retryHandler
+        );
+    }
+}
+
+
+function beginDashboardRequest(dashboardName) {
+    const request = {
+        view: document.getElementById("dashboard-root")?.firstElementChild
+    };
+
+    dashboardRequests.set(dashboardName, request);
+
+    // Apply results only to the current view and its latest filter selection.
+    return () => (
+        dashboardRequests.get(dashboardName) === request &&
+        request.view &&
+        document.getElementById("dashboard-root")?.firstElementChild === request.view
+    );
+}
+
+function destroyDashboardCharts(charts) {
+    charts.forEach((chart) => chart.destroy());
+    return [];
+}
+
+function cleanupDashboards() {
+    dashboardRequests.clear();
+    destroyExecutiveCharts();
+    destroyProductsDashboardCharts();
+    destroyCustomersDashboardCharts();
+    destroyMarketingDashboardCharts();
+}
+
+
 /* -- DATA DATE CONFIGURATION --*/
 
 const DASHBOARD_DATA_RANGE = {
@@ -190,52 +249,12 @@ function configureDateInputRange(
 }
 
 
-function clampDateToRange(
-    date,
-    minimumDate,
-    maximumDate
-) {
-    if (!(date instanceof Date)) {
-        return null;
-    }
-
-    if (date < minimumDate) {
-        return new Date(minimumDate);
-    }
-
-    if (date > maximumDate) {
-        return new Date(maximumDate);
-    }
-
-    return date;
-}
 
 
-function synchronizeDateInputLimits(
-    startInput,
-    endInput,
-    datasetMinimum,
-    datasetMaximum
-) {
-    if (
-        !startInput ||
-        !endInput
-    ) {
-        return;
-    }
-
-    startInput.min = datasetMinimum;
-    endInput.max = datasetMaximum;
-
-    startInput.max =
-        endInput.value ||
-        datasetMaximum;
-
-    endInput.min =
-        startInput.value ||
-        datasetMinimum;
-}
-
+const DASHBOARD_MONTH_FORMATTER = new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    year: "numeric"
+});
 
 function formatMonthLabel(monthKey) {
     const [year, month] = monthKey
@@ -248,13 +267,7 @@ function formatMonthLabel(monthKey) {
         1
     );
 
-    return new Intl.DateTimeFormat(
-        "en-US",
-        {
-            month: "short",
-            year: "numeric"
-        }
-    ).format(date);
+    return DASHBOARD_MONTH_FORMATTER.format(date);
 }
 
 /* -- TREND COMPARISON PERIODS --*/
@@ -513,11 +526,7 @@ function comparePointValues(
 /* -- EXECUTIVE CHART MANAGEMENT --*/
 
 function destroyExecutiveCharts() {
-    executiveCharts.forEach((chart) => {
-        chart.destroy();
-    });
-
-    executiveCharts = [];
+    executiveCharts = destroyDashboardCharts(executiveCharts);
 }
 
 
@@ -767,6 +776,8 @@ function renderExecutiveDashboard(
 /* -- EXECUTIVE DATE FILTER --*/
 
 async function applyExecutiveDateFilter() {
+    const isCurrentRequest = beginDashboardRequest("executive");
+
     const startInput =
         document.getElementById(
             "executive-start-date"
@@ -829,6 +840,7 @@ async function applyExecutiveDateFilter() {
             : "vs previous 12 months";
 
     try {
+        setDashboardStatus("Cargando datos...");
         const currentStartDate =
             formatDateForInput(
                 startDate
@@ -867,6 +879,12 @@ async function applyExecutiveDateFilter() {
             previousRequest
         ]);
 
+        if (!isCurrentRequest()) {
+            return;
+        }
+
+        setDashboardStatus("");
+
         renderExecutiveDashboard(
             currentData,
             previousData,
@@ -875,6 +893,7 @@ async function applyExecutiveDateFilter() {
         );
 
     } catch (error) {
+        showDashboardLoadError(isCurrentRequest, applyExecutiveDateFilter);
         console.error(
             "Error al cargar Executive:",
             error
@@ -884,44 +903,28 @@ async function applyExecutiveDateFilter() {
 
 /* -- EXECUTIVE DATE FILTER CONFIGURATION --*/
 
-function configureExecutiveDateFilter() {
-    const startInput =
-        document.getElementById(
-            "executive-start-date"
-        );
+function configureDashboardDateFilter(dashboardName, onChange, range) {
+    const startInput = document.getElementById(`${dashboardName}-start-date`);
+    const endInput = document.getElementById(`${dashboardName}-end-date`);
 
-    const endInput =
-        document.getElementById(
-            "executive-end-date"
-        );
-
-    if (
-        !startInput ||
-        !endInput
-    ) {
+    if (!startInput || !endInput || !range) {
         return;
     }
 
-    const {
-        minimumDate,
-        maximumDate
-    } = getDashboardDateRange();
+    configureDateInputRange(startInput, endInput, range.startDate, range.endDate);
+    startInput.addEventListener("change", onChange);
+    endInput.addEventListener("change", onChange);
+}
 
-    configureDateInputRange(
-        startInput,
-        endInput,
-        minimumDate,
-        maximumDate
-    );
 
-    startInput.addEventListener(
-        "change",
-        applyExecutiveDateFilter
-    );
-
-    endInput.addEventListener(
-        "change",
-        applyExecutiveDateFilter
+function configureExecutiveDateFilter() {
+    configureDashboardDateFilter(
+        "executive",
+        applyExecutiveDateFilter,
+        {
+            startDate: DASHBOARD_DATA_RANGE.minimumDate,
+            endDate: DASHBOARD_DATA_RANGE.maximumDate
+        }
     );
 }
 
@@ -929,36 +932,7 @@ function configureExecutiveDateFilter() {
 /* -- EXECUTIVE INITIALIZATION --*/
 
 async function initExecutiveDashboard() {
-    const startInput =
-        document.getElementById(
-            "executive-start-date"
-        );
-
-    const endInput =
-        document.getElementById(
-            "executive-end-date"
-        );
-
-    if (
-        !startInput ||
-        !endInput
-    ) {
-        return;
-    }
-
     configureExecutiveDateFilter();
-
-    const {
-        minimumDate,
-        maximumDate
-    } = getDashboardDateRange();
-
-    startInput.value =
-        minimumDate;
-
-    endInput.value =
-        maximumDate;
-
     await applyExecutiveDateFilter();
 }
 
@@ -989,11 +963,7 @@ const PRODUCT_DIMENSIONS = {
 /* -- PRODUCTS CHART MANAGEMENT --*/
 
 function destroyProductsDashboardCharts() {
-    productsDashboardCharts.forEach((chart) => {
-        chart.destroy();
-    });
-
-    productsDashboardCharts = [];
+    productsDashboardCharts = destroyDashboardCharts(productsDashboardCharts);
 }
 
 
@@ -1330,6 +1300,8 @@ function renderProductsDashboard(
 /* -- PRODUCTS FILTERS --*/
 
 async function applyProductsFilters() {
+    const isCurrentRequest = beginDashboardRequest("products");
+
     const startInput =
         document.getElementById(
             "products-start-date"
@@ -1387,6 +1359,7 @@ async function applyProductsFilters() {
     }
 
     try {
+        setDashboardStatus("Cargando datos...");
         const data =
             await getProductsData(
                 formatDateForInput(
@@ -1398,12 +1371,19 @@ async function applyProductsFilters() {
                 dimension
             );
 
+        if (!isCurrentRequest()) {
+            return;
+        }
+
+        setDashboardStatus("");
+
         renderProductsDashboard(
             data,
             dimension
         );
 
     } catch (error) {
+        showDashboardLoadError(isCurrentRequest, applyProductsFilters);
         console.error(
             "Error al cargar Products:",
             error
@@ -1415,50 +1395,10 @@ async function applyProductsFilters() {
 /* -- PRODUCTS DATE FILTER CONFIGURATION --*/
 
 function configureProductsDateFilter() {
-    const startInput =
-        document.getElementById(
-            "products-start-date"
-        );
-
-    const endInput =
-        document.getElementById(
-            "products-end-date"
-        );
-
-    if (
-        !startInput ||
-        !endInput
-    ) {
-        return;
-    }
-
-    const {
-        minimumDate,
-        maximumDate
-    } = getDashboardDateRange();
-
-    const lastAvailableMonth =
-        getLastAvailableMonthRange();
-
-    if (!lastAvailableMonth) {
-        return;
-    }
-
-    configureDateInputRange(
-        startInput,
-        endInput,
-        lastAvailableMonth.startDate,
-        lastAvailableMonth.endDate
-    );
-
-    startInput.addEventListener(
-        "change",
-        applyProductsFilters
-    );
-
-    endInput.addEventListener(
-        "change",
-        applyProductsFilters
+    configureDashboardDateFilter(
+        "products",
+        applyProductsFilters,
+        getLastAvailableMonthRange()
     );
 }
 
@@ -1487,11 +1427,7 @@ async function initProductsDashboard() {
 /* -- CUSTOMERS CHART MANAGEMENT --*/
 
 function destroyCustomersDashboardCharts() {
-    customersDashboardCharts.forEach((chart) => {
-        chart.destroy();
-    });
-
-    customersDashboardCharts = [];
+    customersDashboardCharts = destroyDashboardCharts(customersDashboardCharts);
 }
 
 
@@ -1708,6 +1644,8 @@ async function renderCustomersDashboard(
     startDate,
     endDate
 ) {
+    const isCurrentRequest = beginDashboardRequest("customers");
+
     const trendPeriods =
         getTrendComparisonPeriods(
             startDate,
@@ -1717,6 +1655,8 @@ async function renderCustomersDashboard(
     if (!trendPeriods) {
         return;
     }
+
+    setDashboardStatus("Cargando datos...");
 
     const currentRequest =
         getCustomersData(
@@ -1744,7 +1684,16 @@ async function renderCustomersDashboard(
     ] = await Promise.all([
         currentRequest,
         previousRequest
-    ]);
+    ]).catch((error) => {
+        showDashboardLoadError(isCurrentRequest, applyCustomersDateFilter);
+        throw error;
+    });
+
+    if (!isCurrentRequest()) {
+        return;
+    }
+
+    setDashboardStatus("");
 
     const current =
         currentData?.data ??
@@ -1846,45 +1795,10 @@ async function applyCustomersDateFilter() {
 /* -- CUSTOMERS DATE FILTER CONFIGURATION --*/
 
 function configureCustomersDateFilter() {
-    const startInput =
-        document.getElementById(
-            "customers-start-date"
-        );
-
-    const endInput =
-        document.getElementById(
-            "customers-end-date"
-        );
-
-    if (
-        !startInput ||
-        !endInput
-    ) {
-        return;
-    }
-
-    const lastAvailableMonth =
-        getLastAvailableMonthRange();
-
-    if (!lastAvailableMonth) {
-        return;
-    }
-
-    configureDateInputRange(
-        startInput,
-        endInput,
-        lastAvailableMonth.startDate,
-        lastAvailableMonth.endDate
-    );
-
-    startInput.addEventListener(
-        "change",
-        applyCustomersDateFilter
-    );
-
-    endInput.addEventListener(
-        "change",
-        applyCustomersDateFilter
+    configureDashboardDateFilter(
+        "customers",
+        applyCustomersDateFilter,
+        getLastAvailableMonthRange()
     );
 }
 
@@ -1901,11 +1815,7 @@ async function initCustomersDashboard() {
 /* -- MARKETING CHART MANAGEMENT --*/
 
 function destroyMarketingDashboardCharts() {
-    marketingDashboardCharts.forEach((chart) => {
-        chart.destroy();
-    });
-
-    marketingDashboardCharts = [];
+    marketingDashboardCharts = destroyDashboardCharts(marketingDashboardCharts);
 }
 
 
@@ -2326,6 +2236,8 @@ async function renderMarketingDashboard(
     currentPeriod,
     channel
 ) {
+    const isCurrentRequest = beginDashboardRequest("marketing");
+
     const startDate =
         parseDataDate(
             currentPeriod.startDate
@@ -2352,6 +2264,8 @@ async function renderMarketingDashboard(
     if (!trendPeriods) {
         return;
     }
+
+    setDashboardStatus("Cargando datos...");
 
     const currentRequest =
         getMarketingData(
@@ -2381,7 +2295,16 @@ async function renderMarketingDashboard(
     ] = await Promise.all([
         currentRequest,
         previousRequest
-    ]);
+    ]).catch((error) => {
+        showDashboardLoadError(isCurrentRequest, applyMarketingFilters);
+        throw error;
+    });
+
+    if (!isCurrentRequest()) {
+        return;
+    }
+
+    setDashboardStatus("");
 
     updateMarketingDashboardKpis(
         currentMetrics,
@@ -2553,60 +2476,25 @@ function initializeMarketingChannels() {
 /* -- MARKETING INITIALIZATION --*/
 
 async function initMarketingDashboard() {
-    const startDateInput =
-        document.getElementById(
-            "marketing-start-date"
-        );
+    const startDateInput = document.getElementById("marketing-start-date");
+    const endDateInput = document.getElementById("marketing-end-date");
+    const channelSelect = document.getElementById("marketing-channel");
+    const lastAvailableMonth = getLastAvailableMonthRange();
 
-    const endDateInput =
-        document.getElementById(
-            "marketing-end-date"
-        );
-
-    const channelSelect =
-        document.getElementById(
-            "marketing-channel"
-        );
-
-    if (
-        !startDateInput ||
-        !endDateInput
-    ) {
+    if (!startDateInput || !endDateInput || !lastAvailableMonth) {
         return;
     }
 
-    const lastAvailableMonth =
-        getLastAvailableMonthRange();
-
-    if (!lastAvailableMonth) {
-        return;
-    }
-
-    configureDateInputRange(
-        startDateInput,
-        endDateInput,
-        lastAvailableMonth.startDate,
-        lastAvailableMonth.endDate
+    configureDashboardDateFilter(
+        "marketing",
+        applyMarketingFilters,
+        lastAvailableMonth
     );
 
     if (channelSelect) {
-        await initializeMarketingChannels();
-
-        channelSelect.addEventListener(
-            "change",
-            applyMarketingFilters
-        );
+        initializeMarketingChannels();
+        channelSelect.addEventListener("change", applyMarketingFilters);
     }
-
-    startDateInput.addEventListener(
-        "change",
-        applyMarketingFilters
-    );
-
-    endDateInput.addEventListener(
-        "change",
-        applyMarketingFilters
-    );
 
     await applyMarketingFilters();
 }

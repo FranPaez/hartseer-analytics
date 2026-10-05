@@ -53,5 +53,16 @@ class Settings:
 
     DB_PASSWORD: str = os.getenv("DB_PASSWORD", "")
 
+    # Disable persistent sockets for deployments that sleep when idle.
+    DB_USE_POOL: bool = os.getenv("DB_USE_POOL", "True").lower() == "true"
+
+    DB_CONNECT_TIMEOUT: int = max(1, int(os.getenv("DB_CONNECT_TIMEOUT", "10")))
+
+    DB_CONNECT_RETRIES: int = max(1, int(os.getenv("DB_CONNECT_RETRIES", "3")))
+
+    DB_CONNECT_RETRY_DELAY: float = max(
+        0, float(os.getenv("DB_CONNECT_RETRY_DELAY", "1"))
+    )
+
 
 settings = Settings()

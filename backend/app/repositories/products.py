@@ -1,6 +1,6 @@
 from datetime import date
 
-from app.database.session import get_db_session
+from app.database.session import get_db_cursor
 
 
 class ProductsRepository:
@@ -52,10 +52,8 @@ class ProductsRepository:
         else:
             raise ValueError("Invalid group_by value.")
 
-        connection = get_db_session()
-        cursor = connection.cursor(dictionary=True)
 
-        try:
+        with get_db_cursor() as cursor:
 
             query = f"""
                 SELECT
@@ -172,10 +170,6 @@ class ProductsRepository:
                 },
                 "financial": financial,
             }
-
-        finally:
-            cursor.close()
-            connection.close()
 
 
 products_repository = ProductsRepository()

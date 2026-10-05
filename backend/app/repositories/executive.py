@@ -1,6 +1,6 @@
 from datetime import date
 
-from app.database.session import get_db_session
+from app.database.session import get_db_cursor
 
 
 class ExecutiveRepository:
@@ -12,10 +12,8 @@ class ExecutiveRepository:
         end_date: date,
     ) -> dict:
 
-        connection = get_db_session()
-        cursor = connection.cursor(dictionary=True)
 
-        try:
+        with get_db_cursor() as cursor:
 
             # Financial KPIs
             cursor.execute(
@@ -149,10 +147,6 @@ class ExecutiveRepository:
                 "aov": float(aov["aov"]),
                 "trends": trends,
             }
-
-        finally:
-            cursor.close()
-            connection.close()
 
 
 executive_repository = ExecutiveRepository()

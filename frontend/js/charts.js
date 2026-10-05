@@ -18,6 +18,17 @@ const COMMON_CHART_OPTIONS = {
 };
 
 
+const CHART_CURRENCY_FORMATTER = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0
+});
+
+const CHART_INTEGER_FORMATTER = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 0
+});
+
+
 /* -- SHARED DOM UTILITIES --*/
 
 function getChartCanvas(canvasId) {
@@ -73,14 +84,7 @@ function formatChartValue(
 
     switch (format) {
         case "currency":
-            return new Intl.NumberFormat(
-                "en-US",
-                {
-                    style: "currency",
-                    currency: "USD",
-                    maximumFractionDigits: 0
-                }
-            ).format(numericValue);
+            return CHART_CURRENCY_FORMATTER.format(numericValue);
 
         case "percentage":
             return `${numericValue.toFixed(2)}%`;
@@ -89,12 +93,7 @@ function formatChartValue(
             return `${numericValue.toFixed(2)}x`;
 
         default:
-            return new Intl.NumberFormat(
-                "en-US",
-                {
-                    maximumFractionDigits: 0
-                }
-            ).format(numericValue);
+            return CHART_INTEGER_FORMATTER.format(numericValue);
     }
 }
 
@@ -130,12 +129,7 @@ function formatCompactNumber(value) {
         ).toFixed(1)}K`;
     }
 
-    return new Intl.NumberFormat(
-        "en-US",
-        {
-            maximumFractionDigits: 0
-        }
-    ).format(numericValue);
+    return CHART_INTEGER_FORMATTER.format(numericValue);
 }
 
 function formatChartTick(

@@ -1,6 +1,15 @@
 from datetime import date
 
-from app.database.session import get_db_session
+from app.database.session import get_db_cursor
+
+
+CHANNEL_MAPPING = {
+    "Tienda": 1,
+    "Instagram": 2,
+    "Mercado Libre": 3,
+    "Página Web": 4,
+    "Facebook": 5,
+}
 
 
 class MarketingRepository:
@@ -13,18 +22,8 @@ class MarketingRepository:
         channel: str,
     ) -> dict:
 
-        connection = get_db_session()
-        cursor = connection.cursor(dictionary=True)
 
-        channel_mapping = {
-            "Tienda": 1,
-            "Instagram": 2,
-            "Mercado Libre": 3,
-            "Página Web": 4,
-            "Facebook": 5,
-        }
-
-        try:
+        with get_db_cursor() as cursor:
 
             # Financial KPIs
 
@@ -83,7 +82,7 @@ class MarketingRepository:
                     AND c.id_canal = %s
                 """
 
-                params.append(channel_mapping[channel])
+                params.append(CHANNEL_MAPPING[channel])
 
             cursor.execute(
                 query,
@@ -130,7 +129,7 @@ class MarketingRepository:
                     AND c.id_canal = %s
                 """
 
-                params.append(channel_mapping[channel])
+                params.append(CHANNEL_MAPPING[channel])
 
             cursor.execute(
                 query,
@@ -216,59 +215,50 @@ class MarketingRepository:
                 (start_date, end_date),
             )
 
+            trend_rows = cursor.fetchall()
+            monthly_costs = {}
+
+            # Fetch all monthly channel costs once instead of querying per trend.
+            if any(row["id_canal"] != 1 for row in trend_rows):
+                cursor.execute(
+                    """
+                    SELECT
+                        cp.id_canal,
+                        DATE_FORMAT(cp.fecha, '%Y-%m') AS period,
+                        COALESCE(SUM(cp.monto), 0) AS marketing_cost
+                    FROM costos_publicitarios cp
+                    WHERE cp.fecha >= DATE_FORMAT(%s, '%Y-%m-01')
+                    AND cp.fecha < DATE_ADD(
+                        DATE_FORMAT(%s, '%Y-%m-01'),
+                        INTERVAL 1 MONTH
+                    )
+                    GROUP BY cp.id_canal, DATE_FORMAT(cp.fecha, '%Y-%m');
+                    """,
+                    (start_date, end_date),
+            )
+                monthly_costs = {
+                    (row["id_canal"], row["period"]): float(row["marketing_cost"])
+                    for row in cursor.fetchall()
+                }
+
             trends = []
-
-            for row in cursor.fetchall():
-
-                marketing_cost = 0.0
-                roas = 0.0
-
-                if row["id_canal"] != 1:
-
-                    cursor.execute(
-                        """
-                        SELECT
-                            COALESCE(
-                                SUM(cp.monto),
-                                0
-                            ) AS marketing_cost
-
-                        FROM costos_publicitarios cp
-
-                        WHERE
-                            cp.id_canal = %s
-
-                        AND
-                            DATE_FORMAT(cp.fecha, '%Y-%m')
-                            = %s;
-                        """,
-                        (
-                            row["id_canal"],
-                            row["period"],
-                        ),
-                    )
-
-                    marketing = cursor.fetchone()
-
-                    marketing_cost = float(
-                        marketing["marketing_cost"]
-                    )
-
-                    roas = (
-                        float(row["revenue"])
-                        / marketing_cost
-                        if marketing_cost > 0
-                        else 0
-                    )
+            for row in trend_rows:
+                trend_cost = (
+                    monthly_costs.get((row["id_canal"], row["period"]), 0.0)
+                    if row["id_canal"] != 1
+                    else 0.0
+                )
+                trend_revenue = float(row["revenue"])
+                trend_roas = trend_revenue / trend_cost if trend_cost > 0 else 0.0
 
                 trends.append(
                     {
                         "period": row["period"],
                         "channel": row["channel"],
-                        "revenue": float(row["revenue"]),
+                        "revenue": trend_revenue,
                         "profit": float(row["profit"]),
-                        "marketing_cost": marketing_cost,
-                        "roas": round(roas, 2),
+                        "marketing_cost": trend_cost,
+                        "roas": round(trend_roas, 2),
                     }
                 )
 
@@ -281,10 +271,6 @@ class MarketingRepository:
                 "net_profit": net_profit,
                 "trends": trends,
             }
-
-        finally:
-            cursor.close()
-            connection.close()
 
 
 marketing_repository = MarketingRepository()

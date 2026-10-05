@@ -85,7 +85,16 @@ function renderCurrentView(route) {
 
     void dashboardRoot.offsetWidth;
 
-    dashboardRoot.innerHTML = routeConfig.render();
+    cleanupDashboards();
+    dashboardRoot.innerHTML = `
+        <div id="dashboard-status" class="dashboard-status" role="status" aria-live="polite" hidden>
+            <span id="dashboard-status-message"></span>
+            <button id="dashboard-retry" class="dashboard-status__retry" type="button" hidden>
+                Reintentar
+            </button>
+        </div>
+        ${routeConfig.render()}
+    `;
 
     dashboardRoot.classList.add(
         "main-content--entering"
