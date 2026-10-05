@@ -250,5 +250,3 @@ The checks use deterministic fixtures and require no running database or externa
 Frontend checks exercise the real scripts with DOM and Chart adapters. Backend checks
 exercise the API routes and analytical SQL through a SQLite adapter for MySQL date functions.
 They complement validation in a browser and against MySQL.
-
-See [optimization notes](OPTIMIZATIONS.md) for changes and verification scope.
